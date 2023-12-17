@@ -1,0 +1,5 @@
+{
+  "latex-workshop.latex.outDir": "%DIR%/build",
+  "vim.disableExtension": true,
+  "workbench.iconTheme": "eq-material-theme-icons-ocean"
+}
