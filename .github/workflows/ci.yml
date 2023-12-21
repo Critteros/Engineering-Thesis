@@ -1,0 +1,27 @@
+name: Compile LaTeX on Push
+
+on:
+  push:
+    branches:
+      - main # Change this to your main branch name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -jobname=Engineering-Thesis
+
+      - name: Upload thesis PDF
+        uses: actions/upload-artifact@v2
+        if: success()
+        with:
+          name: Engineering-Thesis
+          path: Engineering-Thesis.pdf
