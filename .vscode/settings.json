@@ -1,6 +1,7 @@
 {
   "latex-workshop.latex.outDir": "%DIR%/build",
-  "vim.disableExtension": false,
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "vim.disableExtension": true,
   "workbench.iconTheme": "eq-material-theme-icons-ocean",
   "latex-workshop.latex.jobname": "Engineering-Thesis",
   "latex-workshop.latex.tools": [
