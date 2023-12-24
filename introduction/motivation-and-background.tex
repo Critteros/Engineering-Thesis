@@ -31,14 +31,36 @@ remotely using Secure Shell (SSH) ore Remote Desktop Protocol (RDP), there are s
 This type of failures are often caused by a failure in the booting process which will result in the operating system
 not booting entirely or booting into a state which lacks the necessary tools to recover the system remotely.
 These failures called for an on site recovery by a technician, which is both costly and time-consuming.
+
 As long as the computer is able to properly communicate with the network there is another solution for this category
 of failures. The solution involves booting computer into a specialized minimal operating system which provides
-the necessary tools to recover the system remotely. This type of operating systems are called Live CD or Live USB.
+the necessary tools to recover the system remotely. This type of operating systems are called Live CD \cite{livecdlist} or Live USB.
 They differ from the standard operating systems in that they do not require installation and can operate without
 a persistent storage such as a hard drive or a solid state drive. They are loaded into the memory of the computer.
-One of the most popular recovery Live CD is SysRescueCD \cite{sysrescuecd}.
 
+An exemplar of such an operating system is \texttt{SysRescueCD} \cite{sysrescuecd}.
+Yet, according to the information available to the author \texttt{SysRescueCD} does not provide a way to remotely access the computer,
+with its default configuration. This however can be achieved by using a tool called \texttt{OpenSSH} \cite{openssh} which is a free implementation of the Secure Shell protocol.
+This configuration can be saved on Live CD's ram disk image which will be loaded after booting. In the case of
+\texttt{SysRescueCD} the modifications should be made to \texttt{airootfs.sfs} file in the sysrescue ISO image.
 
+To fulfil the promise of fully remote solution for system maintenance and recovery, the solution should be able to
+boot a target computer into recovery system without physical access to the computer. Afterwards the recovery process
+would be performed remotely using Secure Shell Protocol by an administrator.
+
+\subsection{System maintenance messages}
+Another valuable addition would be a mechanism for displaying messages of pending system maintenance the users of the system.
+This feature is mostly targeted at universities and businesses where the user would be sitting in front of the target computer.
+The message would inform the user that the system is going to be maintained due to a failure or a scheduled maintenance.
+There already exists solutions for displaying such messages inside a running operating system, but according
+to the author knowledge there is no solution for displaying scheduled maintenance messages on a computer which is in \texttt{Preboot Execution Environment}\cite{pxespec}.
+
+By providing such a mechanism the system administrator would be able to inform the user of the target computer that
+the system is going to be maintained even in a case of a failure which prevents the operating system from booting.
+The only requirement for this mechanism to work is that the computer is able to boot into \texttt{Preboot Execution Environment}.
+Which is a reasonable assumption, because the \texttt{PXE} is a part of the computer's network card firmware
+
+\subsection{Dynamic operating system selection}
 
 
 \end{document}

@@ -2,3 +2,7 @@ Dydejczyk
 tex
 SystemRescueCD
 SysRescueCD
+sysrescue
+airootfs
+sfs
+Preboot
