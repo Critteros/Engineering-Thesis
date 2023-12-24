@@ -1,9 +1,10 @@
 \documentclass[11pt,a4paper]{report}
 
 % Language setup, Polish is used for the first template page
-\usepackage[utf8]{inputenc}  % Use UTF-8 encoding for input files
-\usepackage{polski}          % Support for Polish language
-% \usepackage[polish]{babel} % Adapts LaTeX to Polish typographical rules, the currency and comma decimal point are changed
+\usepackage[utf8]{inputenc}         % Use UTF-8 encoding for input files
+\usepackage[T1]{fontenc}            % Set the font encoding to T1, required with babel to properly compile without errors
+% \usepackage{polski}               % Support for Polish language, disabled as it causes Chapter to be translated to Rozdział
+\usepackage[polish, english]{babel} % Adapts LaTeX to Polish typographical rules, the currency and comma decimal point are changed
 
 % Math symbols and libraries, they are likely to remain unused in this thesis
 \usepackage{amssymb}  % Math symbols
@@ -44,10 +45,9 @@
 \subfile{./cover_page.tex}
 \newpage
 
-%Number the pages
+\subfile{./introduction/introduction.tex}
+
 
 %Margins
-
-Some text
 
 \end{document}

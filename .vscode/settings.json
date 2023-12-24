@@ -3,7 +3,6 @@
   "latex-workshop.latex.autoBuild.run": "onSave",
   "vim.disableExtension": true,
   "workbench.iconTheme": "eq-material-theme-icons-ocean",
-  "latex-workshop.latex.jobname": "Engineering-Thesis",
   "latex-workshop.latex.tools": [
     {
       "name": "latexmk",
@@ -12,7 +11,7 @@
         "-synctex=1",
         "-interaction=nonstopmode",
         "-file-line-error",
-        "-jobname=Engineering-Thesis",
+        // "-jobname=Engineering-Thesis",
         "-pdf",
         "-outdir=%OUTDIR%",
         "%DOC%"
