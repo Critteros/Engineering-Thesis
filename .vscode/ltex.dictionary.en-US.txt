@@ -1,2 +1,4 @@
 Dydejczyk
 tex
+SystemRescueCD
+SysRescueCD

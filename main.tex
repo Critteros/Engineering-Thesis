@@ -24,6 +24,16 @@
 % Support for multiple files
 \usepackage{subfiles}
 
+% Bibliography
+\usepackage[
+  backend=biber,
+  style=numeric,
+  sorting=none
+]{biblatex} %Imports biblatex package
+\usepackage{csquotes} %Needed for biblatex
+
+% Bibliography files
+\addbibresource{introduction/introduction.bib}
 
 % \titlelabel{\thetitle.\quad}
 % \setlength{\parindent}{0pt}
@@ -32,6 +42,8 @@
 % \renewcommand\arraystretch{1.3}
 
 %\usepackage[margin=0.9in]{geometry}
+
+% \addbibresource{bib.bib}
 
 
 % \pagenumbering{arabic}
@@ -48,6 +60,6 @@
 \subfile{./introduction/introduction.tex}
 
 
-%Margins
+\printbibliography
 
 \end{document}

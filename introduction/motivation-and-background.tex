@@ -1,10 +1,43 @@
 \documentclass[../main.tex]{subfiles}
 
+
 \begin{document}
 \section{Motivation and Background}
 \label{sec:motivation-and-background}
 
+\subsection{Scaling operating system installation to large number of hosts}
 The simplest way of installing an operating system on a computer is to use a bootable disk.
+Bootable disk are removable media, such as USB flash drives or CD-ROMs, that contains software
+which loads the operating system installer or standalone operating systems which does not require installation.
+
+This method is simple and reliable, but it has some drawbacks. Primary, it requires physical access to the computer.
+This is not a problem when installing an operating system on a personal computer, but it is a problem when installing
+an operating system on remote computers especially when there are many of them. Another problem is that it is not
+scalable, because it requires a person to manually install the operating system on each computer individually.
+
+A solution is needed for environments which have to manage large number of computers such a data centers, businesses
+or universities. The minimal requirements for such a solution are:
+\begin{itemize}
+  \item It should allow remote operating system installation. Without physical access to the computer
+  \item It should be scalable. Adding new computers to the system should not require manual intervention and be manageable even for non-technical users
+  \item The cost of maintaining the system should be low and should not require specialized hardware
+  \item Virtualized system should be supported in the same manner as physical systems
+\end{itemize}
+
+\subsection{System maintenance and recovery}
+Remote operating system installation is not the only problem that system administrators face. They are also
+tased with maintaining the system and recovering it in a case of a failure. While most of the failures can be performed
+remotely using Secure Shell (SSH) ore Remote Desktop Protocol (RDP), there are some failures that require physical access.
+This type of failures are often caused by a failure in the booting process which will result in the operating system
+not booting entirely or booting into a state which lacks the necessary tools to recover the system remotely.
+These failures called for an on site recovery by a technician, which is both costly and time-consuming.
+As long as the computer is able to properly communicate with the network there is another solution for this category
+of failures. The solution involves booting computer into a specialized minimal operating system which provides
+the necessary tools to recover the system remotely. This type of operating systems are called Live CD or Live USB.
+They differ from the standard operating systems in that they do not require installation and can operate without
+a persistent storage such as a hard drive or a solid state drive. They are loaded into the memory of the computer.
+One of the most popular recovery Live CD is SysRescueCD \cite{sysrescuecd}.
+
 
 
 
