@@ -7,7 +7,6 @@
 \label{sec:computer-boot-process}
 
 \subsection{Overview}
-
 Upon powering up a computer, it undergoes a predetermined sequence of steps known as the \texttt{boot process}.
 The boot process responsibilities encompass:
 \begin{itemize}
@@ -41,6 +40,32 @@ It is designed to replace the \texttt{BIOS} firmware interface. \texttt{UEFI} is
   \includegraphics[width=\textwidth]{uefi_chip.jpg}
   \caption{Flash memory on motherboard containing UEFI firmware \cite{uefi_chip_img_ref}}
   \label{fig:uefi_chip}
+\end{figure}
+
+\subsection{Network booting}
+
+Network booting involves initiating the boot process of a computer through a network rather than its local disk.
+This method of booting is often supported by \texttt{UEFI}/\texttt{BIOS} firmware via the
+\texttt{PXE} (Preboot Execution Environment) protocol \cite{pxespec}. The \texttt{PXE} protocol
+describes the client-server (figure \ref{fig:pxe_client_server_model}) interactions that take place during the boot process.
+For the client to participate in the network boot process, it needs to have a \texttt{PXE} capable network interface controller (NIC).
+
+On the server side, a \texttt{DHCP} (Dynamic Host Configuration Protocol) server with \texttt{PXE} extensions is required
+alongside a \texttt{TFTP} (Trivial File Transfer Protocol) server. The \texttt{DHCP} server provides the client with
+information about the location of the \texttt{TFTP} server and the URI of the boot image to load from the \texttt{TFTP} server.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{pxe/client_server_model.png}
+  \caption{Client-server model of PXE protocol \cite{pxespec}}
+  \label{fig:pxe_client_server_model}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{pxe/protocol.png}
+  \caption{PXE client-server communication protocol \cite{pxespec_protocol}}
+  \label{fig:pxe_protocol}
 \end{figure}
 
 \end{document}
