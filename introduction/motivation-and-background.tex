@@ -61,6 +61,26 @@ The only requirement for this mechanism to work is that the computer is able to 
 Which is a reasonable assumption, because the \texttt{PXE} is a part of the computer's network card firmware
 
 \subsection{Dynamic operating system selection}
+In settings such as universities and businesses it is common for a single computer to be shared amongst multiple users.
+This scenario is particularly prevalent in computer labs, where students use the computers for a specified duration of time.
 
+In these environments, users often have the need to employ different operating systems.
+For instance, a student may prefer using Linux for his programming class, but opt for Windows when attending computerization of measurements class.
+
+Addressing this requirement often involved installing multiple operating systems on the same computer and utilizing a boot manager.
+The boot manager responsibility is to show a menu for selecting the operating system and then boot the selected operating system.
+Although boot managers can be configured to automatically select the operating system, this solution is not ideal.
+The user is still exposed to the boot manager, which is an unnecessary complication or might be even a security risk if the boot manager is configured inproperly.
+
+A better solution would be to automatically select the operating system based on the class schedule or the identity of the user.
+Determining the user identity can be achieved by using a smart card reader or a biometric sensor. However, this solution would
+require additional hardware which is not always available. For universities, a sufficient solution would be to use the class schedule,
+since it is often desirable to employ the same operating system for all students throughout the class duration.
+
+This can be achieved though \texttt{iPXE} \cite{ipxe}, which is a network boot firmware that supports scripting.
+By providing adequate scripts, \texttt{iPXE} firmware can be used to communicate with a central server which would select the operating system based on the class schedule or the user's identity.
+
+Rather than adjusting the default OS boot manager, such as GRUB \cite{grub}, which involves modifying the boot manager configuration file on each computer, the \texttt{iPXE} solution
+allows the system administrator to centralize configuration changes. The modifications would be applied to all computers, eliminating the necessity of rolling out configuration changes to each computer individually.
 
 \end{document}
