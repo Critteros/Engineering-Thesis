@@ -9,3 +9,4 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QWYDZIAŁ FIZYKI I INFORMATYKI STOSOWANEJ KATEDRA INFORMATYKI STOSOWANEJ I FIZYKI KOMPUTEROWEJ Projekt dyplomowy Developing an iPXE-Powered network boot management platform for streamlined Operating System deployments Opracowanie systemu do kontroli rozruchu sieciowego z wykorzystaniem iPXE, umożliwiającego łatwą instalację systemów operacyjnych na dużą skale Autor: Szymon Kozioł Kierunek studiów: Informatyka Stosowana Opiekun pracy: dr inż.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QAutor: Szymon Kozioł Kierunek studiów: Informatyka Stosowana Opiekun pracy: dr inż.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QSystemRescueCD\\E$"}
+{"rule":"INCORRECT_POSSESSIVE_FORM_AFTER_A_NUMBER","sentence":"^\\Q80386 Programmer's Reference Manual\\E$"}
