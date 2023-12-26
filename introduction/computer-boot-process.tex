@@ -68,4 +68,29 @@ information about the location of the \texttt{TFTP} server and the URI of the bo
   \label{fig:pxe_protocol}
 \end{figure}
 
+The PXE client-server communication shown in figure \ref{fig:pxe_protocol} starts with the client
+broadcasting a \texttt{DHCP} request. The \texttt{DHCP} server responds with a \texttt{DHCP} offer
+containing additional \texttt{PXE} information as shown in figure \ref{fig:pxe_dhcp_offer}.
+
+% TODO: Would be useful to crop top 3 pixels of this image to remove the black line
+%       this can be achieved using tools like nbconvert
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{pxe/dhcp-pxe-capture.png}
+  \caption{DHCP offer packet with PXE extensions \cite{pxespec_dhcp_options}}
+  \label{fig:pxe_dhcp_offer}
+\end{figure}
+
+Selected \texttt{DHCP} options from figure \ref{fig:pxe_dhcp_offer}:
+
+\begin{itemize}
+  \item \texttt{Next Server IP address} - This refers to the IP address of the \texttt{TFTP} server, commonly denoted as \texttt{next\_server} in \texttt{DHCP} configuration files
+  \item \texttt{Boot File Name} - This refers to the URI of the boot image to load from the \texttt{TFTP} server, commonly denoted as \texttt{filename} in \texttt{DHCP} configuration files
+\end{itemize}
+
+Using the information from the \texttt{DHCP} offer, the client then sends a \texttt{TFTP} file retrieval command to the \texttt{TFTP} server.
+The \texttt{filename} option from the \texttt{DHCP} offer is used as the file path in the TFTP request.
+After successfully retrieving the boot image, the client executes the boot image. Which will handle the rest of the boot process.
+This usually involves loading the operating system kernel alongside the initial ramdisk into memory and executing the kernel.
+
 \end{document}

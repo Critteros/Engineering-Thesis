@@ -7,3 +7,5 @@ airootfs
 sfs
 Preboot
 iPXE
+nextserver
+ramdisk
