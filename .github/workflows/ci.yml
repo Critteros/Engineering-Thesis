@@ -14,9 +14,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Compile LaTeX
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
+          docker_image: docker.io/critteros/texlive-full-jsx
           args: -pdf -file-line-error -halt-on-error --shell-escape -interaction=nonstopmode -jobname=Engineering-Thesis
 
       - name: Upload thesis PDF
