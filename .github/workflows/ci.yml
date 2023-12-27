@@ -18,11 +18,11 @@ jobs:
         with:
           root_file: main.tex
           docker_image: docker.io/critteros/texlive-full-jsx
-          args: -pdf -file-line-error -halt-on-error --shell-escape -interaction=nonstopmode -jobname=Engineering-Thesis
+          args: -pdf -file-line-error -halt-on-error --shell-escape -interaction=nonstopmode -jobname=Engineering-Thesis -outdir=build
 
       - name: Upload thesis PDF
         uses: actions/upload-artifact@v2
         if: success()
         with:
           name: Engineering-Thesis
-          path: Engineering-Thesis.pdf
+          path: build/Engineering-Thesis.pdf
