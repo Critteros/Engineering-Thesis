@@ -11,3 +11,5 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QSystemRescueCD\\E$"}
 {"rule":"INCORRECT_POSSESSIVE_FORM_AFTER_A_NUMBER","sentence":"^\\Q80386 Programmer's Reference Manual\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QNext Server IP address - This refers to the IP address of the TFTP server, commonly denoted as nextserver in DHCP configuration files.\\E$"}
+{"rule":"DOUBLE_PUNCTUATION","sentence":"^\\Q../main.tex\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qintroduction/introduction.tex\\E$"}

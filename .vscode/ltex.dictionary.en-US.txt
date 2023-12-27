@@ -9,3 +9,6 @@ Preboot
 iPXE
 nextserver
 ramdisk
+ipxe
+gPXE
+gPXE

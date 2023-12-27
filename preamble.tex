@@ -1,0 +1,46 @@
+\documentclass[11pt,a4paper]{report}
+
+% Language setup, Polish is used for the first template page
+\usepackage[utf8]{inputenc}         % Use UTF-8 encoding for input files
+\usepackage[T1]{fontenc}            % Set the font encoding to T1, required with babel to properly compile without errors
+% \usepackage{polski}               % Support for Polish language, disabled as it causes Chapter to be translated to Rozdział
+\usepackage[polish, english]{babel} % Adapts LaTeX to Polish typographical rules, the currency and comma decimal point are changed
+
+% Math symbols and libraries, they are likely to remain unused in this thesis
+\usepackage{amssymb}  % Math symbols
+\usepackage{amsmath}  % Typesetting math formulas
+\usepackage{systeme}  % Typesetting systems of equations
+\usepackage{titlesec} % Dot after section Number
+
+% Text formatting
+\usepackage{textcomp}               % Provides additional text symbols such as currency symbols and European language characters
+\usepackage{float}                  % Improved interface for floating objects
+\usepackage[margin=3.5cm]{geometry} % Margins
+
+% Graphics
+\usepackage{graphicx}  % Allows including images in the document
+\usepackage{subfigure} % Allows creating subfigures within the document
+
+% Support for multiple files
+\usepackage{subfiles}
+
+% Fixing references
+\usepackage{xr}
+
+% Code highlighting
+\usepackage[outputdir=build]{minted}
+
+% Bibliography
+\usepackage[
+  backend=biber,
+  style=numeric,
+  sorting=none
+]{biblatex} %Imports biblatex package
+\usepackage{csquotes} %Needed for biblatex
+
+% Bibliography files
+\addbibresource{introduction/introduction.bib}
+\addbibresource{modern-network-booting/modern-network-booting.bib}
+
+% Graphics path
+\graphicspath{{images/}{../images/}}
