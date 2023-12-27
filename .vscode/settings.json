@@ -10,6 +10,7 @@
       "args": [
         "-synctex=1",
         "-interaction=nonstopmode",
+        "--shell-escape",
         "-file-line-error",
         // "-jobname=Engineering-Thesis",
         "-pdf",
@@ -56,6 +57,7 @@
       "name": "pdflatex",
       "command": "pdflatex",
       "args": [
+        "--shell-escape",
         "-synctex=1",
         "-interaction=nonstopmode",
         "-file-line-error",

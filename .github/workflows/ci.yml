@@ -17,7 +17,7 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: main.tex
-          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -jobname=Engineering-Thesis
+          args: -pdf -file-line-error -halt-on-error --shell-escape -interaction=nonstopmode -jobname=Engineering-Thesis
 
       - name: Upload thesis PDF
         uses: actions/upload-artifact@v2
