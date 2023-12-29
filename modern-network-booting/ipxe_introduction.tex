@@ -9,6 +9,14 @@
 The PXE standard explained in subsection \ref{subsec:network-booting} have been implemented notably
 by the \texttt{gPXE} and \texttt{iPXE} projects. \texttt{gPXE} was the first implementation of the PXE standard
 and was later surpassed by \texttt{iPXE} which is a fork of \texttt{gPXE} \cite{ipxe_vs_gpxe}.
-The newer \texttt{iPXE} project is still actively maintained and open
+
+\texttt{iPXE} project is still actively maintained and open-sourced under GNU GPL v2 license \cite{ipxe_license}.
+It provides additional features that go beyond the PXE specification, most notably the ability to boot from
+a web server via \texttt{HTTP} with optional \texttt{HTTPS} support. This feature alongside the added support
+for controlling the boot process with a specialized scripting language called \texttt{iPXE} scripts, makes
+\texttt{iPXE} it an ideal choice when implementing a network booting solution.
+
+The \texttt{iPXE} firmware can be flushed to a network card's ROM chip, loaded from a bootable media
+or executed as a bootloader in existing \texttt{PXE} environment as shown in figure \ref{fig:pxe_protocol}.
 
 \end{document}
