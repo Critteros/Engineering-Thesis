@@ -6,6 +6,12 @@
 \section{iPXE firmware compilation}
 
 The official iPXE documentation provides a quick overview of the compilation process \cite{ipxe_compilation_guide},
-alongside detailed explainations of the various build options \cite{ipxe_build_options}.
+alongside detailed explanations of the various build options \cite{ipxe_build_options}.
+
+For usage in the project, the following build options were enabled by modifying the \texttt{src/config/general.h} file:
+
+\begin{itemize}
+  \item \texttt{REBOOT\_CMD} - HTTP support
+\end{itemize}
 
 \end{document}

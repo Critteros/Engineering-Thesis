@@ -12,3 +12,4 @@ ramdisk
 ipxe
 gPXE
 gPXE
+REBOOTCMD
