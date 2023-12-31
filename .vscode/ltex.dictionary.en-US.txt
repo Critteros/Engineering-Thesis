@@ -13,3 +13,16 @@ ipxe
 gPXE
 gPXE
 REBOOTCMD
+CONSOLECMD
+POWEROFFCMD
+poweroff
+ipstat
+IPSTATCMD
+PINGCMD
+gcc
+binutils
+perl
+liblzma
+mtools
+filesystem
+debian-based
