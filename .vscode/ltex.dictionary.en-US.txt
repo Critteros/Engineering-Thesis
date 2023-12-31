@@ -41,3 +41,7 @@ iso
 usb
 nproc
 rf
+goto
+ip
+isset
+$variablename

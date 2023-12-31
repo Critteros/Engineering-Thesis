@@ -1,0 +1,9 @@
+#!ipxe
+# Set the variable
+set my_variable "Hello World"
+# Check if the variable is set and print a message if it is
+isset ${my_variable} && echo "Variable is set"
+# Print the variable
+echo ${my_variable}
+# Show the value of the variable
+show my_variable

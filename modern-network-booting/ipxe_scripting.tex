@@ -1,0 +1,79 @@
+% !TEX root = ../main.tex
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\section{iPXE scripting}
+
+\subsection{Scripting overview}
+
+The iPXE firmware comes with a built-in scripting language that allows for a wide range of customizations.
+This language resembles a shell scripting language, but is more limited in its capabilities.
+The primary operations that can be performed are:
+
+\begin{itemize}
+  \item \textbf{Variable assignment}: Variables can be set and read, and can be used to store strings
+  \item \textbf{Control flow}: iPXE supports basic control flow statement based on the \texttt{goto} command and labels
+  \item \textbf{Configuration}: iPXE scripting API allows for configuration of network interfaces with both static and dynamic IP addresses
+  \item \textbf{Certificate management}: iPXE scripting API allows for management of certificates and keys, this allows for secure communication with HTTPS servers and loading only trusted scripts
+  \item \textbf{HTTP requests}: Scripting language supports making HTTP requests, although the usage is limited to downloading scripts and files
+  \item \textbf{Basic user interaction via console}: iPXE scripting comes with a set of commands that allow basic I/O (Input and Output) operations via the console
+\end{itemize}
+
+Comments in iPXE scripting are prefixed with the \texttt{\#} character and are ignored by the interpreter.
+It is important to start all iPXE scripts with a comment that contains the \texttt{\#!ipxe} string.
+The hash character followed by an exclamation mark is called a shebang. It is used to indicate
+how the file should be interpreted when executing this file.
+
+By default, the iPXE interpreter will try to interpret any file
+as a binary executable which will lead to crash in the pre boot environment which will lead to a system reboot.
+
+\subsection{Variables}
+
+The iPXE script primarily serves to set up the boot process, and it utilizes variables to store the configuration.
+Variables are stored as strings and there do not exist any scoping rules like in other programming languages.
+All variables are accessible globally and can be read and written to at any time.
+
+The scripting environment comes with a set of predefined variables that hold the current configuration of the system.
+For example, the \texttt{net0/ip} variable holds the IP address of the first network interface. Setting
+this variable will change the IP address of the first network interface.
+The variables can be accessed using the \texttt{set} and \texttt{isset} commands.
+The \texttt{set} command takes two arguments, the first argument is the name of the variable and the second argument is the value that the variable will be set to.
+The \texttt{isset} command takes one argument, the name of the variable, and returns 1 if the variable is set and 0 otherwise.
+For accessing the value of a variable, the \texttt{\$\{variable\_name\}} syntax is used.
+
+\begin{listing}[H]
+  \textfile{modern-network-booting/code/variable_operations.ipxe}
+  \caption{Basic variable operations in iPXE scripts}
+\end{listing}
+
+To display the value of a variable, either the \texttt{echo} or \texttt{show} commands can be used.
+The \texttt{echo} command will print the value that was passed to it, while the \texttt{show} command
+will use the passed value as the name of the variable and print its value.
+
+
+\subsection{Control flow}
+All ipxe scripts are executed sequentially, line by line.
+Each line is broken down into commands and arguments and executed in the defined order.
+
+To define multiple commands in the same line one of the following commands separators must be used.
+
+\begin{itemize}
+  \item \texttt{;}    - Executes the next command regardless of the result of the previous command
+  \item \texttt{\&\&} - Executes the next command only if the previous command was successful
+  \item \texttt{||}   - Executes the next command only if the previous command failed
+\end{itemize}
+
+\begin{listing}
+  \begin{textcode}
+    # Set the variable
+    set my_variable "Hello World"
+    # Check if the variable is set and print a message if it is
+    isset ${my_variable} && echo "Variable is set" || echo "Variable is not set"
+      # Print the variable
+      echo ${my_variable}
+    # Show the value of the variable
+    show my_variable
+  \end{textcode}
+\end{listing}
+
+\end{document}
