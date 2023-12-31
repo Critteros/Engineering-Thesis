@@ -26,3 +26,10 @@ liblzma
 mtools
 filesystem
 debian-based
+fontsize
+framesep
+baselinestretch
+bgcolor
+lightgray
+linenos
+liblzma-dev

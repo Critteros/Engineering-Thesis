@@ -13,3 +13,6 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QNext Server IP address - This refers to the IP address of the TFTP server, commonly denoted as nextserver in DHCP configuration files.\\E$"}
 {"rule":"DOUBLE_PUNCTUATION","sentence":"^\\Q../main.tex\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qintroduction/introduction.tex\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qlisting name=Source Code\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qlisting name=Source Code bash fontsize=, frame=lines, framesep=3mm, baselinestretch=1.2, bgcolor=lightgray, linenos,\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qlisting name=Source Code bash fontsize=, frame=lines, framesep=3mm, baselinestretch=1.2, bgcolor=lightgray, linenos\\E$"}

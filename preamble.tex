@@ -30,37 +30,46 @@
 
 % Listings
 \usepackage{listings} % Code and bash listings
-\usepackage{xcolor}
+\usepackage{xcolor}   % Color definitions
 
-% LST Listing config
+% Colors
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
-\lstdefinestyle{mystyle}{
-  backgroundcolor=\color{backcolour},
-  commentstyle=\color{codegreen},
-  keywordstyle=\color{magenta},
-  numberstyle=\tiny\color{codegray},
-  stringstyle=\color{codepurple},
-  basicstyle=\ttfamily\footnotesize,
-  breakatwhitespace=false,
-  breaklines=true,
-  captionpos=b,
-  keepspaces=true,
-  numbers=left,
-  numbersep=5pt,
-  showspaces=false,
-  showstringspaces=false,
-  showtabs=false,
-  tabsize=2
-}
-
-\lstset{style=mystyle}
+\definecolor{lightgray}{gray}{0.9}
 
 % Code highlighting
-\usepackage[outputdir=build]{minted}
+% kpswhich used to fix local paths
+\usepackage{caption} % Used for code captions
+\usepackage[outputdir=build, newfloat]{minted}
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Source Code}
+
+\newcommand{\makemintedenvs}[1]{%
+  \newminted{bash}{#1}%
+  \newmintedfile{bash}{#1}%
+  \newminted{jsx}{#1}%
+  \newmintedfile{jsx}{#1}%
+}
+\makemintedenvs{
+  fontsize=\footnotesize,
+  frame=lines,
+  framesep=3mm,
+  baselinestretch=1.2,
+  bgcolor=lightgray,
+  linenos
+}
+
+% \newcommand{\bashscript}[3][]{\inputminted[
+%     fontsize=\footnotesize,
+%     frame=lines,
+%     framesep=3mm,
+%     baselinestretch=1.2,
+%     bgcolor=lightgray,
+%     linenos,
+%     #1
+%   ]{#2}{#3}}
 
 % Bibliography
 \usepackage[
