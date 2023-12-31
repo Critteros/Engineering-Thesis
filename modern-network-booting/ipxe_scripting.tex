@@ -11,7 +11,7 @@ This language resembles a shell scripting language, but is more limited in its c
 The primary operations that can be performed are:
 
 \begin{itemize}
-  \item \textbf{Variable assignment}: Variables can be set and read, and can be used to store strings
+  \item \textbf{Variable assignment}: Variables can be set and read, and can be used to store configuration values
   \item \textbf{Control flow}: iPXE supports basic control flow statement based on the \texttt{goto} command and labels
   \item \textbf{Configuration}: iPXE scripting API allows for configuration of network interfaces with both static and dynamic IP addresses
   \item \textbf{Certificate management}: iPXE scripting API allows for management of certificates and keys, this allows for secure communication with HTTPS servers and loading only trusted scripts
@@ -30,8 +30,10 @@ as a binary executable which will lead to crash in the pre boot environment whic
 \subsection{Variables}
 
 The iPXE script primarily serves to set up the boot process, and it utilizes variables to store the configuration.
-Variables are stored as strings and there do not exist any scoping rules like in other programming languages.
+Variables are stored as arrays of bytes \cite{ipxe_settings_types_docs}, when working with variables for most cases it is sufficient to treat them as strings.
 All variables are accessible globally and can be read and written to at any time.
+The detailed list of variable types is not documented in the official documentation \cite{ipxe}, but can be found in the source code \cite{ipxe_settings_types_docs}.
+
 
 The scripting environment comes with a set of predefined variables that hold the current configuration of the system.
 For example, the \texttt{net0/ip} variable holds the IP address of the first network interface. Setting
@@ -48,8 +50,32 @@ For accessing the value of a variable, the \texttt{\$\{variable\_name\}} syntax 
 
 To display the value of a variable, either the \texttt{echo} or \texttt{show} commands can be used.
 The \texttt{echo} command will print the value that was passed to it, while the \texttt{show} command
-will use the passed value as the name of the variable and print its value.
+will use the passed value as the name of the variable and print its value alongside variable type.
 
+\begin{listing}[H]
+  \textfile{modern-network-booting/code/variable_types.ipxe}
+  \caption{Setting and displaying variable types in iPXE scripts, the commands are executed in the iPXE shell}
+\end{listing}
+
+
+Although using string values for variables might suffice, there are situations where it becomes beneficial to incorporate additional validation to ensure that the value aligns with the correct type.
+The type of variable can be explicitly provided by suffixing the value with the colon character (\texttt{:}) and the type of the variable.
+When using a given variable for a value of another variable, the resulting type of the variable will be the same as the type of the variable that is currently being set, this
+is demonstrated in listing \ref{code:variable_types_when_assigning}.
+
+\begin{listing}[H]
+  \textfile{modern-network-booting/code/variable_types_when_assigning.ipxe}
+  \caption{How types of variables are inferred when assigning values to variables}
+  \label{code:variable_types_when_assigning}
+\end{listing}
+
+Some commands require the value to be of a specific type, most notable the increment (\texttt{inc}) and decrement (\texttt{dec}) commands, this is demonstrated in listing \ref{code:increment_type_safety}.
+
+\begin{listing}[H]
+  \textfile{modern-network-booting/code/increment_type_safety.ipxe}
+  \caption{Increment command interactions with values of different types}
+  \label{code:increment_type_safety}
+\end{listing}
 
 \subsection{Control flow}
 All ipxe scripts are executed sequentially, line by line.
@@ -63,17 +89,36 @@ To define multiple commands in the same line one of the following commands separ
   \item \texttt{||}   - Executes the next command only if the previous command failed
 \end{itemize}
 
-\begin{listing}
-  \begin{textcode}
-    # Set the variable
-    set my_variable "Hello World"
-    # Check if the variable is set and print a message if it is
-    isset ${my_variable} && echo "Variable is set" || echo "Variable is not set"
-      # Print the variable
-      echo ${my_variable}
-    # Show the value of the variable
-    show my_variable
-  \end{textcode}
+\begin{listing}[H]
+  \textfile{modern-network-booting/code/control_flow_example.ipxe}
+  \caption{Basic control flow operations in iPXE scripts}
 \end{listing}
+
+Combining the usage of \texttt{\&\&} and \texttt{||} allows for basic
+if-else logic to be implemented in the iPXE scripting language.
+As these operators rely on the return value of the previous command,
+they can be used for basic error handling. Return value of 0 indicates success,
+while any other value indicates failure.
+
+To define more complex control flow, the \texttt{goto} command can be used.
+The \texttt{goto} command takes one argument, the name of the label to jump to.
+Labels are defined using the \texttt{:} character followed by the name of the label.
+The \texttt{goto} command can be used to implement loops and conditional statements.
+
+\begin{listing}[H]
+  \textfile{modern-network-booting/code/goto_example.ipxe}
+  \caption{Infinite loop implemented using goto command}
+\end{listing}
+
+Any kind of control flow can be implemented by combining the \texttt{goto} command with variables.
+
+\begin{listing}[H]
+  \textfile{modern-network-booting/code/for_loop_example.ipxe}
+  \caption{"For loop" construct implemented in iPXE scripts}
+  \label{code:for_loop_example}
+\end{listing}
+
+Listing \ref{code:for_loop_example} demonstrates how a "for loop" can be implemented in iPXE scripts. As shown in the example this kind of loop can be used to
+iterate over network interfaces and perform operations on them.
 
 \end{document}

@@ -1,0 +1,6 @@
+iPXE> set var1:ipv4 127.0.0.1
+iPXE> show var1
+var1:ipv4 = 127.0.0.1
+iPXE> set var2 ${var1}
+iPXE> show var2
+var2:string = 127.0.0.1

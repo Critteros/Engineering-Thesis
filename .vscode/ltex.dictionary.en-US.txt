@@ -45,3 +45,4 @@ goto
 ip
 isset
 $variablename
+dec

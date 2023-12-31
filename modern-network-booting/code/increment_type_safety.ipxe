@@ -1,0 +1,9 @@
+iPXE> set istring 0
+iPXE> show istring
+istring:string = 0
+iPXE> set iint:int32 0
+iPXE> show iint 
+iint:int32 = 0
+iPXE> inc iint
+iPXE> show iint
+iint:int32 = 1

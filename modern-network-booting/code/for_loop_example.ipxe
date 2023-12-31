@@ -1,0 +1,6 @@
+#!ipxe
+set i:int32 0
+:loop isset ${net${i}/mac} || goto done
+  echo net${i} is a ${net${i}/chip} with MAC ${net${i}/mac}
+  inc i && goto loop
+:done

@@ -1,0 +1,4 @@
+#!ipxe
+:loop
+echo Helo World
+goto loop

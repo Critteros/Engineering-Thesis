@@ -18,3 +18,4 @@
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qlisting name=Source Code bash fontsize=, frame=lines, framesep=3mm, baselinestretch=1.2, bgcolor=lightgray, linenos\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QAfter installing the required dependencies, the firmware can be compiled by running one of the provided make targets, notably bin-x8664-efi/ipxe.efi for UEFI booting on the x8664 architecture and bin/undionly.kpxe for legacy BIOS booting.\\E$"}
 {"rule":"UNLIKELY_OPENING_PUNCTUATION","sentence":"^\\Q; - Executes the next command regardless of the result of the previous command && - Executes the next command only if the previous command was successful || - Executes the next command only if the previous command failed\\E$"}
+{"rule":"EN_UNPAIRED_BRACKETS","sentence":"^\\QThe type of variable can be explicitly provided by suffixing the value with the colon character (:) and the type of the variable.\\E$"}

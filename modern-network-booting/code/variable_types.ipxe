@@ -1,0 +1,17 @@
+iPXE> show filename
+filename:string vmlinuz
+iPXE> show filename:hex
+filename:hex = 76:6d:6c:69:6e:75:7a
+
+iPXE> show net0/ip
+net0.dhcp/ip:ipv4 = 10.0.0.145
+
+iPXE> set myvar 127.0.0.1
+iPXE> show myvar
+myvar:string = 127.0.0.1
+
+iPXE> set myvar:ipv4 127.0.0.1
+myvar1:ipv4 = 127.0.0.1
+
+iPXE> set myvar:ipv4 string_value
+Could not store "myval": Invalid argument (http://ipxe.org/1c056082)
