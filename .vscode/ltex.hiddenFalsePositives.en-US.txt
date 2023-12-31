@@ -16,3 +16,4 @@
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qlisting name=Source Code\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qlisting name=Source Code bash fontsize=, frame=lines, framesep=3mm, baselinestretch=1.2, bgcolor=lightgray, linenos,\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qlisting name=Source Code bash fontsize=, frame=lines, framesep=3mm, baselinestretch=1.2, bgcolor=lightgray, linenos\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QAfter installing the required dependencies, the firmware can be compiled by running one of the provided make targets, notably bin-x8664-efi/ipxe.efi for UEFI booting on the x8664 architecture and bin/undionly.kpxe for legacy BIOS booting.\\E$"}

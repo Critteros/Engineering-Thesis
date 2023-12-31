@@ -32,12 +32,45 @@ To properly compile the iPXE firmware, the following build dependencies are requ
 Method of installing mentioned dependencies varies depending on the operating system and distribution used.
 For debian-based distribution the following command can be used:
 
-\begin{code}
+\begin{listing}[H]
   \bashfile{modern-network-booting/install-build-deps.sh}
 
-  \captionof{listing}{Installing build dependencies on Debian-based distributions}
-\end{code}
+  \caption{Installing build dependencies on Debian-based distributions}
+\end{listing}
 
+After installing the required dependencies, the firmware can be compiled by running
+one of the provided make targets \cite{ipxe_build_targets}, notably \texttt{bin-x86\_64-efi/ipxe.efi} for UEFI
+booting on the x86\_64 architecture and \texttt{bin/undionly.kpxe} for legacy BIOS booting.
+
+Additionaly the \texttt{bin/ipxe.iso} target can be used to create a bootable ISO image containing the iPXE firmware.
+This image can be used to boot the firmware on a virtual machine or a physical machine by burning it to a CD or a USB drive.
+An additional ISO target for flashing the firmware onto a USB drive is also provided (\texttt{bin/ipxe.usb}).
+
+\begin{listing}[H]
+  \begin{bashcode}
+    make -j $(nproc --all) bin-x86_64-efi/ipxe.efi
+  \end{bashcode}
+
+  \caption{Compiling the iPXE firmware for UEFI booting on the x86\_64 architecture}
+\end{listing}
+
+As by default the \texttt{make} command only uses a single
+thread for parallel compilation, the \texttt{-j} flag is used to specify the number of threads to use.
+The \texttt{nproc --all} command is used to determine the number of available CPU cores.
+For some cases it might be necessary to reduce the number of cores used for compilation
+to avoid putting too much strain on the system.
+
+The firmware image can be found in the \texttt{bin-x86\_64-efi/ipxe.efi} directory.
+Besides the firmware image, this directory also contains many temporary files used for the compilation process (e.g. object files)
+which can be safely deleted.
+
+\begin{listing}[H]
+  \begin{bashcode}
+    rm -rf bin-x86_64-efi/*.o
+  \end{bashcode}
+
+  \caption{Delete temporary files generated during the compilation process}
+\end{listing}
 
 
 
