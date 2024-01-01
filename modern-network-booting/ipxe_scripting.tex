@@ -257,8 +257,30 @@ This command is useful to ensure that the user has enough time to read the menu 
 
 \subsection{Embedding scripts in the iPXE firmware image}
 
-% When iPXE binary is compiled the default boot behavior is to wait a couple of second
+When the unmodified iPXE binary is executed, it prompts the user to press \texttt{Ctrl+B} to enter the iPXE shell. Following a brief delay, an automatic boot is initiated.
 
-% For automation purposes, it is essential to be able to provide initial commands that will be executed
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{ipxe/default_boot.png}
+  \caption{Default boot behavior of the iPXE firmware}
+\end{figure}
+
+During this automated boot process, the \texttt{next\_server} and \texttt{filename} DHCP options are used to determine the location of the script to execute.
+Although this behavior is anticipated when the iPXE firmware is intended as a PXE substitute, it poses issues when the iPXE firmware has already been loaded from the default NIC PXE firmware utilizing these variables.
+
+In these cases the iPXE firmware will attempt to load once again the same script that was used to load the iPXE firmware. This will result in an infinite loop of loading the same script over and over again.
+The loop will hang when all the available memory is exhausted and the system will freeze.
+
+To customize the boot behavior of the iPXE firmware, an iPXE script can be embedded in the iPXE image. It will be executed automatically when the iPXE firmware is loaded.
+This script will replace the default boot behavior of the iPXE firmware, which includes the prompt for the user to press \texttt{Ctrl+B} to enter the iPXE shell.
+To embed a script in the iPXE firmware, the \texttt{EMBED} variable must be supplied to the \texttt{make} command when compiling the iPXE firmware.
+This variable must contain the path to the script that will be embedded in the iPXE firmware.
+
+\begin{listing}[H]
+  \begin{bashcode}
+    make -j $(nproc --all) EMBED=script.ipxe bin-x86_64-efi/ipxe.efi
+  \end{bashcode}
+  \caption{Compiling the iPXE firmware with an embedded script}
+\end{listing}
 
 \end{document}
