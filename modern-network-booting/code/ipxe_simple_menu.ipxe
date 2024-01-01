@@ -1,0 +1,7 @@
+#!ipxe
+
+menu Please choose an operating system to boot
+item debian12 Debian Bookworm
+item windows10 Windows 10
+item sysrescuecd SystemRescue
+choose os

@@ -1,0 +1,19 @@
+#!ipxe
+
+dhcp
+set web_server_url http://${netX/gateway}
+set logo_url ${web_server_url}/agh_logo.png
+
+# Resize the console to 1024x768
+console --x 1024 --y 768
+
+# Set console background image
+console --picture ${logo_url}
+
+# menu
+menu Please choose an operating system to boot
+item debian12 Debian Bookworm
+item windows10 Windows 10
+item sysrescuecd SystemRescue
+choose os
+prompt --key q Press 'q' to quit && exit ||

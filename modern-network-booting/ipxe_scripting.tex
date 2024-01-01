@@ -183,8 +183,82 @@ To boot different distributions, refer to the documentation specific to each dis
 The \texttt{Netboot.xyz} project \cite{netbootxyz} offers a diverse collection of iPXE scripts designed for booting different distributions.
 This resource can serve as a guide for booting distributions that may lack dedicated documentation for PXE booting.
 
+\subsection{Interacting with the user}
 
+\subsubsection{Menu}
+
+The most common form of user interaction found in iPXE scripts is the menu.
+The commands that are used to create and manage menus are \texttt{menu}, \texttt{item} and \texttt{choose}.
+
+The \texttt{menu} command takes one optional argument, the name of the menu, executing this command will create a new menu which can be later referred to by its name in other commands.
+If no argument is provided, the default menu will be created. The default menu is referenced in other commands by omitting the menu parameter.
+
+
+To add item to the menu, the \texttt{item} command is used. It takes two arguments, the first argument is the name of the entry and the second value is the displayed label of the entry.
+The difference between the name and the label are that the name is used to reference the entry in other commands, while the label is the text that will be displayed to the user.
+For example, the name of the entry can be "\texttt{sysrescue}" while the label would be "\texttt{SystemRescue}". The user would only see the label, while
+the result that returned by the \texttt{choose} command would be the "\texttt{sysrescue}" name.
+
+In addition to the name and label, \texttt{--name} parameter can be used to specify the name of the menu that the entry belongs to. And the \texttt{--key}
+parameter can be used to specify a shortcut key that upon pressing will select the entry.
+
+
+To display the menu to the user, the \texttt{choose} command is used.
+It takes one argument which is the name of a variable to which the result of the menu will be assigned.
+Additionaly it takes the \texttt{--menu} parameter which specifies the name of the menu to display.
+The \texttt{choose} command will display the menu to the user and wait for the user to select an entry.
+
+\begin{listing}[H]
+  \textfile{modern-network-booting/code/ipxe_simple_menu.ipxe}
+  \caption{Simple iPXE menu for choosing OS to boot}
+  \label{code:ipxe_simple_menu}
+\end{listing}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{ipxe/simple_menu.png}
+  \caption{Menu shown to the user using script from listing \ref{code:ipxe_simple_menu}}
+  \label{fig:ipxe_simple_menu}
+\end{figure}
+
+After user selects an entry in the menu shown in figure \ref{fig:ipxe_simple_menu}, the \texttt{choose} command will write the name of the selected entry to the \texttt{os} variable
+as shown in listing \ref{code:ipxe_simple_menu_result}.
+
+\begin{listing}[H]
+  \begin{textcode}
+    iPXE> show os
+    os:string = windows10
+  \end{textcode}
+  \caption{Contents of the \texttt{os} variable after selecting the \texttt{windows10} entry in the menu shown in figure \ref{fig:ipxe_simple_menu}}
+  \label{code:ipxe_simple_menu_result}
+\end{listing}
+
+\subsubsection{Customizing the menu appearance}
+
+The menu appearance can be customized using the \texttt{console} command.
+This command allows settings background image, resolution and margins of the menu.
+Additionally, the \texttt{color} command can be used to change the color foreground and background colors of the printed text.
+
+\begin{listing}[H]
+  \textfile{modern-network-booting/code/ipxe_custom_menu.ipxe}
+  \caption{Customizing the menu appearance}
+  \label{code:ipxe_custom_menu}
+\end{listing}
+
+The prompt command used in listing \ref{code:ipxe_custom_menu} is used to delay the execution of the script until the user presses a key.
+This command is useful to ensure that the user has enough time to read the menu before it disappears.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{ipxe/customized_menu.png}
+  \caption{Customized menu shown to the user using script from listing \ref{code:ipxe_custom_menu}}
+  \label{fig:ipxe_custom_menu}
+\end{figure}
 
 \subsection{Embedding scripts in the iPXE firmware image}
+
+% When iPXE binary is compiled the default boot behavior is to wait a couple of second
+
+% For automation purposes, it is essential to be able to provide initial commands that will be executed
 
 \end{document}

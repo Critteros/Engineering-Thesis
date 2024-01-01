@@ -59,3 +59,4 @@ bootparams
 SystemRescue
 Netboot
 xyz
+os
