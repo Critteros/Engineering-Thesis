@@ -48,3 +48,14 @@ $variablename
 dec
 dhcp
 ifconf
+netmask
+ifopen
+imgselect
+imgload
+initramfs
+init
+archiso
+bootparams
+SystemRescue
+Netboot
+xyz

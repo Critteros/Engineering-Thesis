@@ -1,0 +1,9 @@
+#!ipxe
+
+# Open first network interface
+ifopen net0
+
+# Configure network interface
+set net0/ip 10.0.0.145
+set net0/netmask 255.255.255.0
+set net0/gateway 10.0.0.1

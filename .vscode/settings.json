@@ -1,6 +1,7 @@
 {
   "latex-workshop.latex.outDir": "%DIR%/build",
   "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.view.pdf.viewer": "browser",
   "vim.disableExtension": true,
   "workbench.iconTheme": "eq-material-theme-icons-ocean",
   "latex-workshop.latex.tools": [

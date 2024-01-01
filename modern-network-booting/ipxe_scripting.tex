@@ -123,6 +123,8 @@ iterate over network interfaces and perform operations on them.
 
 \subsection{Configuring boot process}
 
+\subsubsection{DHCP configuration}
+
 In order to use network communication in iPXE scripts, the network interface must be configured.
 For most use cases, the \texttt{dhcp} command can be used to configure the network interface with a dynamic IP address.
 The \texttt{dhcp} command takes one argument which determinate the network interface to configure.
@@ -135,6 +137,52 @@ As stated by the official documentation \cite{ipxe_dhcp_vs_ifconfig} there is no
   \caption{Configuring network interface using the \texttt{dhcp} command}
   \label{code:dhcp_configuration}
 \end{listing}
+
+Listing \ref{code:dhcp_configuration} demonstrates how the \texttt{dhcp} command can be used to configure the network interface.
+The \texttt{dhcp} command will be executed in a loop until the network interface is configured with a dynamic IP address.
+
+\subsubsection{Static IP configuration}
+
+When the network interface need to be configured with a static IP address, the \texttt{set} command can be used,
+to configure the \texttt{ip}, \texttt{netmask} and \texttt{gateway} variables.
+
+
+Additionaly network interfaces have to be first opened using the \texttt{ifopen} command.
+All network interfaces are closed by default. As pointed out in the documentation opening too much network interfaces can lead to memory exhaustion \cite{ipxe_opening_interfaces}.
+
+\begin{listing}[H]
+  \textfile{modern-network-booting/code/static_ip_configuration.ipxe}
+  \caption{Configuring \texttt{net0} network interface with a static IP address}
+  \label{code:static_ip_configuration}
+\end{listing}
+
+\subsection{Booting kernel image}
+
+To boot a kernel image, the \texttt{kernel} command can be used to fetch and specify the kernel image to boot.
+This command takes the URI of the kernel image as the first argument and the arguments to pass to the kernel as the second argument.
+As pointed out in the documentation notes section \cite{ipxe_kernel_command}, \texttt{imgselect} and \texttt{imgload} are aliases for the \texttt{kernel} command.
+
+Booting only a kernel image will result in a kernel panic, as kernel image does not contain any root filesystem.
+To attach a root filesystem the \texttt{initramfs} disk image is used. Its purpose is to provide a temporary root filesystem that will be used to boot the system.
+After kernel boots, it mounts this filesystem under  "\texttt{/}" and then executes "\texttt{/init}" binary which is responsible for mounting the real root filesystem from persistent storage like a hard drive \cite{initramfs_purpose}.
+
+\begin{listing}[H]
+  \textfile{modern-network-booting/code/booting_sysrescue.ipxe}
+  \caption{Booting the SystemRescue\cite{sysrescuecd} OS}
+  \label{code:ipxe_sysrescue_boot}
+\end{listing}
+
+Listing \ref{code:ipxe_sysrescue_boot} demonstrates how the \texttt{kernel} command can be used to boot the SystemRescue OS.
+Kernel binary image alongside initramfs images are downloaded from HTTP server after \texttt{dhcp} network configuration is performed.
+Many distributions require additional kernel parameters to be passed to the kernel, SystemRescue OS requires
+memory file system to be loaded which is located in the \texttt{airootfs.sfs} file \cite{systemrescue_airootfs_pxe}.
+This is done by passing the base URI and directory containing the \texttt{airootfs.sfs} file as arguments to the \texttt{kernel} command line.
+
+
+To boot different distributions, refer to the documentation specific to each distribution to identify the necessary kernel parameters.
+The \texttt{Netboot.xyz} project \cite{netbootxyz} offers a diverse collection of iPXE scripts designed for booting different distributions.
+This resource can serve as a guide for booting distributions that may lack dedicated documentation for PXE booting.
+
 
 
 \subsection{Embedding scripts in the iPXE firmware image}

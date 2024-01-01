@@ -1,0 +1,25 @@
+#!ipxe
+
+# Nginx server containing unpackged SystemRescue ISO
+set file_server_url http://172.20.50.50:9358
+
+# SystemRescue specific confgiuration
+set sysrescue_souces archisobasedir=sysresccd archiso_http_srv=${file_server_url}
+set sysrescue_kernel_params ${sysrescue_souces}
+
+# Kernel params
+# Sysrescue uses archlinux distrubution
+# Refer to archlinux readme entry for bootparams
+# https://gitlab.archlinux.org/archlinux/archiso/-/raw/v43/docs/README.bootparams
+# netX is the last successfully opened network interface
+set ipparam BOOTIF=${netX/mac} ip=dhcp net.ifnames=0 
+
+# Network setup
+dhcp
+set url ${file_server_url}
+goto boot
+
+:boot
+kernel ${url}/vmlinuz initrd=initrd ${ipparam} ${sysrescue_kernel_params} 
+initrd ${url}/initrd
+boot
