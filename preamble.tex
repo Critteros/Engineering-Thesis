@@ -32,6 +32,12 @@
 \usepackage{listings} % Code and bash listings
 \usepackage{xcolor}   % Color definitions
 
+% Tables
+\usepackage[table]{xcolor}
+% Found in https://tex.stackexchange.com/questions/84400/table-layout-with-tabularx-column-widths-502525
+\usepackage{tabularray}
+\usepackage{tabularx} % for more flexible tables
+
 % Colors
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -42,6 +48,7 @@
 % Code highlighting
 % kpswhich used to fix local paths
 \usepackage{caption} % Used for code captions
+\usepackage{chngcntr} % More caption customization
 \usepackage[outputdir=build, newfloat]{minted}
 % \newenvironment{code}{\captionsetup{type=listing}}{}
 \SetupFloatingEnvironment{listing}{name=Source Code}
@@ -62,6 +69,15 @@
   bgcolor=lightgray,
   linenos
 }
+
+% Create a new table environment with the desired caption format
+\DeclareCaptionLabelFormat{requirement}{Requirement #2}
+\newenvironment{requirementtable}%
+{\renewcommand\thetable{\arabic{table}}%
+  \captionsetup{labelformat=requirement,labelsep=colon}%
+  \captionsetup{position=bottom}% Ensure the caption is at the bottom
+  \begin{table}}%
+    {\end{table}}
 
 % \newcommand{\bashscript}[3][]{\inputminted[
 %     fontsize=\footnotesize,
@@ -84,6 +100,7 @@
 % Bibliography files
 \addbibresource{introduction/introduction.bib}
 \addbibresource{modern-network-booting/modern-network-booting.bib}
+\addbibresource{architecture/architecture.bib}
 
 % Graphics path
 \graphicspath{{images/}{../images/}}

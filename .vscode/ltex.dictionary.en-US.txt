@@ -60,3 +60,4 @@ SystemRescue
 Netboot
 xyz
 os
+bg
