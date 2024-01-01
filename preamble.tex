@@ -72,12 +72,12 @@
 
 % Create a new table environment with the desired caption format
 \DeclareCaptionLabelFormat{requirement}{Requirement #2}
-\newenvironment{requirementtable}%
+\newenvironment{requirements-table}[2][H]%
 {\renewcommand\thetable{\arabic{table}}%
-  \captionsetup{labelformat=requirement,labelsep=colon}%
-  \captionsetup{position=bottom}% Ensure the caption is at the bottom
-  \begin{table}}%
+  \captionsetup{labelformat=requirement,labelsep=colon,position=bottom}%
+  \begin{table}[#1]\captionsetup{labelformat=empty}\caption{}\label{#2}}
     {\end{table}}
+
 
 % \newcommand{\bashscript}[3][]{\inputminted[
 %     fontsize=\footnotesize,
