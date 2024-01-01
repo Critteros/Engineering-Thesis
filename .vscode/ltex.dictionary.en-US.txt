@@ -46,3 +46,5 @@ ip
 isset
 $variablename
 dec
+dhcp
+ifconf

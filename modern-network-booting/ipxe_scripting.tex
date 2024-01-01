@@ -121,4 +121,22 @@ Any kind of control flow can be implemented by combining the \texttt{goto} comma
 Listing \ref{code:for_loop_example} demonstrates how a "for loop" can be implemented in iPXE scripts. As shown in the example this kind of loop can be used to
 iterate over network interfaces and perform operations on them.
 
+\subsection{Configuring boot process}
+
+In order to use network communication in iPXE scripts, the network interface must be configured.
+For most use cases, the \texttt{dhcp} command can be used to configure the network interface with a dynamic IP address.
+The \texttt{dhcp} command takes one argument which determinate the network interface to configure.
+If no argument is provided, the configuration will be tried on all network interfaces.
+Additionaly the \texttt{dhcp} command can be passed the \texttt{--timeout} parameter which will set the timeout for the DHCP request.
+As stated by the official documentation \cite{ipxe_dhcp_vs_ifconfig} there is no difference between using the \texttt{dhcp} command and the \texttt{ifconf}.
+
+\begin{listing}[H]
+  \textfile{modern-network-booting/code/dhcp_configuration.ipxe}
+  \caption{Configuring network interface using the \texttt{dhcp} command}
+  \label{code:dhcp_configuration}
+\end{listing}
+
+
+\subsection{Embedding scripts in the iPXE firmware image}
+
 \end{document}

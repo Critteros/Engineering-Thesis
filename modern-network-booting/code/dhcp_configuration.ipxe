@@ -1,0 +1,3 @@
+#!ipxe
+:retry
+dhcp net0 || goto retry
