@@ -6,35 +6,69 @@
 \begin{document}
 \section{Project Requirements}
 
-\vspace{-\baselineskip}
+\subsection{Functional Requirements}
 
-\begin{requirements-table}{req:add-computer}
-\begin{tblr}{
-  colspec={|X|X[2]|}, hlines,
-  }
-  \SetCell[c=2]{bg=lightgray} Requirement                                                                                       \\
-  Number      & \ref{req:add-computer}                                                                                          \\
-  Description & The user should be able to add computer to managed boot system using unique network identifier like MAC address \\
-  Rationale   & This enables the specification of a personalized boot target for each individual computer.                      \\
-  Type        & Functional                                                                                                      \\
-\end{tblr}
+\subsubsection{User authentication}
+\label{req-f:authentication}
 
-\end{requirements-table}
+\reqtitle{The user should be able to authenticate with the system}
+Enabling user authentication enables the system to restrict data access and also to store user-specific data
 
-\vspace{-3\baselineskip}
+\subsubsection{Permission system}
+\label{req-f:permission-system}
 
-\begin{requirements-table}{req:add-computer-2}
-\begin{tblr}{
-  colspec={|X|X[2]|}, hlines,
-  }
-  \SetCell[c=2]{bg=lightgray} Requirement                                                                  \\
-  Number      & \ref{req:add-computer-2}                                                                   \\
-  Description & The user should be able to login                                                           \\
-  Rationale   & This enables the specification of a personalized boot target for each individual computer. \\
-  Type        & Functional                                                                                 \\
-\end{tblr}
+\reqtitle{There should be two types of accounts one with permission system and another one for administrators. Permissions are assigned to roles that are later assigned to account}
+The implementation of two distinct account types, one featuring a permission system and another designed for administrators established a robust and secure access control framework.
+This approach ensures a clear separation of concerns, with permissions being organized into roles that can be subsequently assigned to individual accounts.
+This hierarchical structure not only enhances system security by restricting unauthorized access but also facilitates efficient management and customization of user privileges
 
-\end{requirements-table}
+
+\subsubsection{Adding computers to the system}
+\label{req-f:add-computer}
+
+\reqtitle{The user should be able to add computer to managed boot system using unique network identifier like MAC address}
+Enabling the addition of computers to the managed boot system using unique network identifiers like MAC addresses not only streamlines the iPXE system for automated and personalized boot processes but
+also enhances security by whitelisting authorized computers to participate in the boot process, ensuring a controlled and secure environment.
+Additionaly this feature allows for customization of behavior for each computer, for example, different boot scripts can be assigned to different computers.
+
+\subsubsection{Computer groups}
+\label{req-f:computer-groups}
+
+\reqtitle{Computers should be able to be grouped into groups. The group interface should facilitate the seamless dragging and dropping of computers between groups, allowing for personalized ordering}
+The ability to group computers into groups and to seamlessly drag and drop computers between groups enables users to organize their computers in a way that best suits their needs.
+This feature also allows users to easily manage their computers by grouping them into logical categories which can be subsequently used to enforce policies on the entire group.
+
+\subsubsection{iPXE boot strategies}
+\label{req-f:boot-strategies}
+
+\reqtitle{Users should have the ability to create custom iPXE boot strategies using predefined iPXE script templates}
+Empowering system consumers with customizable iPXE boot strategies enhances the system's flexibility and adaptability to different use cases to meet the needs of a wide range of users.
+
+\subsubsection{Boot strategy assignment}
+\label{req-f:boot-strategy-assignment}
+\reqtitle{Users should be able to assign boot strategies to computers or groups of computers. If a computer is assigned to a group, the boot strategy allocated to that group should be applied in the absence of any specifically assigned boot strategy for the individual computer}
+This functionality improves user experience by enabling the assignment of boot strategies to entire computer groups, streamlining the process and eliminating the necessity of assigning strategies to individual computers. Additionally, it retains the flexibility to assign boot strategies individually for further customization of the boot process.
+
+\subsubsection{Asset management}
+\label{req-f:asset-management}
+
+\reqtitle{Users should be able to add assets to the system. The asset interface should facilitate the seamless dragging and dropping from filesystem while informing the user about upload progress}
+This functionality allows users to upload assets to the system, enabling the utilization of these assets in boot strategies to furnish essential binary images for the boot process, such as kernel, initramfs, or filesystem images.
+Additionaly this feature should allow for customization of the URI from which the asset is served, for example, the URI can be customized to include the MAC address of the computer to which the asset is assigned.
+
+\subsubsection{iPXE script generation}
+\label{req-f:ipxe-script-generation}
+
+\reqtitle{System should generate on demand iPXE scripts for computers that request them during the network boot process}
+This functionality enables the system to generate iPXE scripts on demand, allowing for the dynamic generation of boot strategies that can be customized to the specific needs of the requesting computer.
+Computers will request the iPXE scripts during the boot process and the system will generate the scripts based on the boot strategy assigned to the computer or the group to which the computer belongs.
+
+\subsubsection{Web interface}
+\label{req-f:web-interface}
+
+\reqtitle{The system should have a web interface that allows users to interact with the system and perform configuration tasks}
+The web interface provides a user-friendly and intuitive way for users to interact with the system and perform configuration tasks.
+The interface should be capable of presenting the system configuration and stored data in a clear and concise manner, allowing users to easily manage the system.
 
 
 \end{document}
