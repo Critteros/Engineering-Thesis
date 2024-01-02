@@ -78,5 +78,36 @@ The secure admin CLI provides a secure access point for administrators to perfor
 This interface should not be accessible over the network and should only be accessible locally on the server.
 This allows administrators to perform sensitive tasks without the risk of exposing the system to unauthorized access like creating new administrator accounts or changing the password of existing accounts.
 
+\subsection{Non-functional Requirements}
+
+\subsubsection{Security}
+\label{req-nf:security}
+
+\begin{itemize}
+  \item \emph{User passwords must be stored securely using password-hashing algorithm}
+  \item \emph{Authentication tokens stored on the client must be signed}
+  \item \emph{System should be protected against cross-site scripting (XSS) attacks}
+  \item \emph{Measures against cross-site request forgery (CSRF) attacks must be implemented for the system.}
+  \item \emph{SQL injection mitigation have to be implemented for the system}
+\end{itemize}
+
+\subsubsection{Performance}
+\label{req-nf:performance}
+
+\begin{itemize}
+  \item \emph{The system should be able to handle at least 100 concurrent requests}
+  \item \emph{The system should be able to generate iPXE scripts in less than 1 second}
+  \item \emph{Interactions with the system should be responsive and take less than 1 second}
+\end{itemize}
+
+\subsection{Interoperability}
+\label{req-nf:interoperability}
+
+\begin{itemize}
+  \item \emph{The system should be able to run on any Linux distribution}
+  \item \emph{The system should expose a GraphQL API that can be used by external applications}
+  \item \emph{The application should be compatible with standard data exchange formats like JSON or YAML}
+  \item \emph{Web interface should be compatible with all modern web browsers}
+\end{itemize}
 
 \end{document}
