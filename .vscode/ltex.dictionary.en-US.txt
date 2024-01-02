@@ -63,3 +63,12 @@ os
 bg
 Atomicity
 Dnsmasq
+Javascript
+IntelliSense
+NestJS
+Fastify
+unopinionated
+Prisma
+Prisma
+ORMs
+DataLoaders

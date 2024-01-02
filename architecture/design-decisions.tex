@@ -4,6 +4,7 @@
 \begin{document}
 \section{Design Decisions}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Infrastructure}
 
 \subsubsection{Database}
@@ -16,7 +17,7 @@ Relational database model was chosen for the database paradigm. This decision wa
   \item The relational model is characterized by its maturity, leading to a plethora of tools and frameworks that actively support its implementation
 \end{itemize}
 
-As for the specific database engine, PostgreSQL\cite{postgresql} was chosen for the following reasons:
+As for the specific database engine, \texttt{PostgreSQL} \cite{postgresql} was chosen for the following reasons:
 
 \begin{itemize}
   \item PostgreSQL is an open-source relational database management system, which means it is freely available and can be modified to suit the needs of the system
@@ -29,7 +30,7 @@ As for the specific database engine, PostgreSQL\cite{postgresql} was chosen for 
 The application will use sessions to store user authentication data. Sessions will be stored in a key-value store to ensure fast access and to avoid the overhead of relational database queries.
 
 This decision also makes it possible to scale the application horizontally by adding more instances of the application server.
-Redis\cite{redis}, was selected as the key-value store for the following rationale:
+\texttt{Redis} \cite{redis}, was selected as the key-value store for the following rationale:
 
 \begin{itemize}
   \item Redis is an open-source in-memory data structure store, which means it is freely available
@@ -39,7 +40,7 @@ Redis\cite{redis}, was selected as the key-value store for the following rationa
 
 \subsubsection{Orchestration}
 
-Containerization and orchestration will be facilitated through Docker\cite{docker}.
+Containerization and orchestration will be facilitated through \texttt{Docker} \cite{docker}.
 This choice allows for the seamless deployment of the application and its dependencies, and it also empowers the horizontal scaling of the application by effortlessly adding more instances of the application server when needed.
 
 Furthermore, the Docker engine will be used to establish services essential for conducting integration testing of the application.
@@ -48,5 +49,70 @@ Furthermore, the Docker engine will be used to establish services essential for 
 
 Dnsmasq\cite{dnsmasq} has been selected to serve as the DHCP and TFTP server, although any DHCP and TFTP server can be utilized optionally. The choice of Dnsmasq is due to its lightweight nature and easy configuration.
 Additionally, it conveniently offers both DHCP and TFTP server capabilities within a single package, along with excellent PXE support.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Backend}
+
+\subsubsection{Programming language}
+
+The backend will be developed with the \texttt{Typescript} programming language \cite{typescript}.
+Being a superset of Javascript, Typescript is entirely compatible with Javascript and can be seamlessly substituted for it.
+Additionally, Typescript is statically typed, providing the advantage of compile-time type checking, a notable benefit compared to Javascript's dynamic typing.
+
+Opting for Typescript significantly enhances the developer experience by leveraging its typing system, which improves IntelliSense and code completion in the integrated development environment (IDE).
+This improvement results in a more efficient development process.
+
+However, unlike Javascript, an additional step is now necessary: the code must be compiled to Javascript before execution.
+
+
+\subsubsection{Web framework}
+
+The backend will be developed using the \texttt{NestJS} \cite{nestjs} web framework.
+NestJS is a progressive Node.js framework for building server-side applications.
+
+It is built with Typescript and combines elements of object-oriented programming, functional programming, and functional reactive programming.
+The framework provides a robust set of features that are essential for the development of a modern web application, such as dependency injection, middleware, and routing.
+
+Under the hood, NestJS uses Express \cite{expressjs} as the underlying \texttt{Express.js} server framework. It is also possible
+to use \texttt{Fastify} \cite{fastify} as the underlying server framework, which provides a performance boot compared to \texttt{Express}.
+However, \texttt{Fastify} is not as mature as \texttt{Express} and does not have the same level of community support.
+
+\subsubsection{Object Relational Mapper}
+
+The \texttt{Prisma} \cite{prisma} object-relational mapper (ORM) will be used to interact with the database.
+Prisma is an open-source database toolkit that provides a type-safe ORM interface for Typescript application.
+The database schema is defined using the Prisma schema definition language, which is then used to generate a type-safe Prisma client.
+
+Prisma offers an effective migration system that facilitates the seamless migration of the database schema.
+This feature enables the effortless adaptation of the database schema as the application expands, with changes being monitored in the version control system.
+
+Moreover, \texttt{Prisma} provides robust optimization features \cite{prisma_optimization} to address the N+1 problem, a prevalent issue in ORMs, particularly in GraphQL APIs.
+This optimization, supplied by Prisma, significantly diminishes code complexity and enhances the application's performance without requiring manual optimization efforts like DataLoaders \cite{medium_dataloaders_graphql}.
+
+\subsubsection{Authentication}
+
+The \texttt{Passport} \cite{passport} authentication middleware will be used to implement authentication in the application.
+Passport is a lightweight authentication middleware for Node.js that provides a comprehensive set of authentication strategies.
+It is compatible with a wide range of authentication mechanisms, including JSON Web Tokens (JWT), OAuth, and OpenID.
+
+\subsubsection{GraphQL server}
+
+The \texttt{Apollo Server} \cite{apollo_server} will be used to implement the GraphQL server.
+Apollo Server is a production-ready, open-source GraphQL server that is compatible with a wide range of Node.js frameworks, including Express, Fastify, and Hapi.
+It comes with build in sandbox and playground, which makes it easy to test and debug the GraphQL API.
+\texttt{NestJS} provides a module that integrates Apollo Server with NestJS, which makes it easy to use Apollo Server in the application.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Frontend}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Database schema}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Version control and tooling}
 
 \end{document}
