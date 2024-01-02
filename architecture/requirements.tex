@@ -70,5 +70,13 @@ Computers will request the iPXE scripts during the boot process and the system w
 The web interface provides a user-friendly and intuitive way for users to interact with the system and perform configuration tasks.
 The interface should be capable of presenting the system configuration and stored data in a clear and concise manner, allowing users to easily manage the system.
 
+\subsubsection{Secure admin command line interface}
+\label{req-f:secure-admin-cli}
+
+\reqtitle{The system should have a secure admin command line interface (CLI) that allows administrators to perform administration tasks}
+The secure admin CLI provides a secure access point for administrators to perform administration tasks that are not available through the web interface.
+This interface should not be accessible over the network and should only be accessible locally on the server.
+This allows administrators to perform sensitive tasks without the risk of exposing the system to unauthorized access like creating new administrator accounts or changing the password of existing accounts.
+
 
 \end{document}
