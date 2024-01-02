@@ -1,0 +1,52 @@
+% !TEX root = ../main.tex
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\section{Design Decisions}
+
+\subsection{Infrastructure}
+
+\subsubsection{Database}
+Relational database model was chosen for the database paradigm. This decision was made because of the following reasons:
+
+\begin{itemize}
+  \item The relational model stands as the most extensively employed database model. This is reflected in the abundance of tools and frameworks that actively support its implementation
+  \item Data used by the system is highly structured, which is a characteristic of the relational model
+  \item ACID (Atomicity, Consistency, Isolation, Durability) properties of the relational model ensure data integrity and consistency
+  \item The relational model is characterized by its maturity, leading to a plethora of tools and frameworks that actively support its implementation
+\end{itemize}
+
+As for the specific database engine, PostgreSQL\cite{postgresql} was chosen for the following reasons:
+
+\begin{itemize}
+  \item PostgreSQL is an open-source relational database management system, which means it is freely available and can be modified to suit the needs of the system
+  \item PostgreSQL offers a wide range of features, including support for JSON data types, which will used to store iPXE scripts parameters
+  \item PostgreSQL is constantly improving in terms of scalability and performance which makes it a viable choice for the system that is expected to experience a high load
+\end{itemize}
+
+\subsubsection{Key-value store}
+
+The application will use sessions to store user authentication data. Sessions will be stored in a key-value store to ensure fast access and to avoid the overhead of relational database queries.
+
+This decision also makes it possible to scale the application horizontally by adding more instances of the application server.
+Redis\cite{redis}, was selected as the key-value store for the following rationale:
+
+\begin{itemize}
+  \item Redis is an open-source in-memory data structure store, which means it is freely available
+  \item Redis primarily stores data in-memory, making it extremely fast for read and write operations. As it is not necessary to persist data that will be stored in the key-value store the reduced latency as opposed to writing to disk is a significant advantage
+  \item Redis has a simple and easy-to-use API, making it straightforward to integrate it into the application
+\end{itemize}
+
+\subsubsection{Orchestration}
+
+Containerization and orchestration will be facilitated through Docker\cite{docker}.
+This choice allows for the seamless deployment of the application and its dependencies, and it also empowers the horizontal scaling of the application by effortlessly adding more instances of the application server when needed.
+
+Furthermore, the Docker engine will be used to establish services essential for conducting integration testing of the application.
+
+\subsubsection{DHCP and TFTP server}
+
+Dnsmasq\cite{dnsmasq} has been selected to serve as the DHCP and TFTP server, although any DHCP and TFTP server can be utilized optionally. The choice of Dnsmasq is due to its lightweight nature and easy configuration.
+Additionally, it conveniently offers both DHCP and TFTP server capabilities within a single package, along with excellent PXE support.
+
+\end{document}
