@@ -98,7 +98,7 @@ It is compatible with a wide range of authentication mechanisms, including JSON 
 \subsubsection{GraphQL server}
 
 The \texttt{Apollo Server} \cite{apollo_server} will be used to implement the GraphQL server.
-Apollo Server is a production-ready, open-source GraphQL server that is compatible with a wide range of Node.js frameworks, including Express, Fastify, and Hapi.
+Apollo Server is a production-ready, open-source GraphQL server that is compatible with a wide range of Node.js frameworks, including Express and Fastify.
 It comes with build in sandbox and playground, which makes it easy to test and debug the GraphQL API.
 \texttt{NestJS} provides a module that integrates Apollo Server with NestJS, which makes it easy to use Apollo Server in the application.
 
@@ -115,7 +115,70 @@ Having the frontend and backend developed with the same programming language wil
 
 \subsubsection{Frontend framework}
 
-For the frontend framework, \texttt{Next.js} \cite{nextjs} will be used with the \texttt{App Router}
+For the frontend framework, \texttt{Next.js} \cite{nextjs} will be used with the \texttt{App Router} \cite{nextjs-app-router}
+routing model. Next.js is a framework build on top of React \cite{react} that enables server-side rendering of React applications.
+
+React is a Javascript library for building user interfaces. It utilizes a component-based architecture that allows for the creation of reusable UI components.
+The data in a React application is referred to as \texttt{state}, the UI is rendered based on the current state of the application.
+Changing the state of the application will trigger an update of the UI.
+
+This mental model can be described as $\mathrm{UI} = f(state)$, where $f$ is a function that takes the state of the application as input and returns the UI as output.
+This component function is called a component in React.
+
+Next.js build on top of React and provides additional features, such a server-side rendering and routing.
+Traditional React applications are rendered on the client-side, which means that the browser downloads the Javascript bundle and renders the UI.
+Which means that the user will see a blank page until the Javascript bundle is downloaded and the UI is rendered.
+Server side rendering (SSR) solves this problem by rendering the UI on the server and sending the rendered HTML to the browser.
+This means that the user will see the UI as soon as the page is loaded, even if the Javascript bundle is not downloaded yet.
+
+App Router model also referred to as \texttt{Next.js 13} is a new routing model introduced in Next.js 13.
+It is a hybrid between client-side and server-side routing. At its core there are two types of components
+\texttt{Server Components} and \texttt{Client Components}. Server components are rendered on the server and client components are rendered on the client (browser).
+The logic contained in server components is executed on the server and the rendered HTML is sent to the browser.
+To handle user interactions, the client components are initially renderer on the server and then the event handlers are attached to the client components in a process called \texttt{hydration} \cite{react-hydrateroot}.
+When the user interacts with the client component, the event handler is executed on the client.
+
+\subsubsection{GraphQL client}
+
+The \texttt{Apollo Client} \cite{apollo-client} will be used for communicating with the GraphQL API exposed by the backend.
+It is not necessary to use a specific library as the GraphQL API can be consumed by any HTTP client.
+The data exchange format used by the GraphQL API is JSON, which is supported by all HTTP clients.
+The queries are made using the HTTP POST method, and the query is sent in the request body.
+However, using a GraphQL client library provides a more convenient way of making queries and mutations.
+It also provides additional features such as caching which reduces the number of requests made to the server.
+
+\subsubsection{UI framework}
+
+The \texttt{shadcn/ui} library \cite{shadcnui} will be used for providing the base UI components for the application.
+It is a library of UI component build on top of Radix UI \cite{radix-ui} and TailwindCSS \cite{tailwindcss}.
+
+Radix UI is a collection of commonly used UI components such as buttons, inputs, and modals.
+These components are unstyled to give the developer full control over the styling of the components.
+All the provided components are fully accessible and support keyboard navigation and screen readers.
+This type of library is referred to as a \texttt{headless UI} library. It provides the base functionality of the components, but the styling is left to the developer.
+It is preferred to build application with headless UI libraries rather than base HTML elements because of the accessibility and keyboard navigation support
+which is difficult to implement correctly.
+
+TailwindCSS is a CSS framework which provides a set of predefined CSS classes that can be used to style the UI.
+These classes are to be used in the HTML elements to style them. This approach is referred to as \texttt{utility-first} CSS.
+Provided classes represent common CSS properties such as \texttt{margin}, \texttt{padding}, \texttt{font-size}, \texttt{font-weight}, etc.
+Tailwind is designed to be used in component-based libraries such as React.
+
+This approach is different from other CSS framework which also provide set of predefined CSS classes like Bootstrap \cite{bootstrap}
+as these classes are not meant to describe the role of a particular element that they are applied to. Instead, they describe one or more CSS properties.
+
+\begin{listing}[H]
+  \htmlfile{architecture/code/tailwind_bootstrap_compare.html}
+  \caption{Comparison of TailwindCSS and Bootstrap CSS classes}
+  \label{code:tailwind_bootstrap_compare}
+\end{listing}
+
+In listing \ref{code:tailwind_bootstrap_compare} a button element is styled using TailwindCSS and Bootstrap.
+The TailwindCSS classes describe the individual CSS properties that are applied to the button element like
+\texttt{px-4} which set the horizontal padding. The Bootstrap classes describe the role of the element like \texttt{btn} which
+indicates that the element is a button. Color classes like \texttt{btn-primary} are used to indicate the color of the button.
+While this approach is more convenient, it is not as flexible as the TailwindCSS approach. For this reason the TailwindCSS approach was chosen.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
