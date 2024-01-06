@@ -80,3 +80,17 @@ HydrateRoot
 Shadcn
 btn
 btn-primary
+accounttype
+enum
+PermissionOnRoles
+RolesOnUser
+mediapath
+resourceid
+isentryvalid
+DataGrip
+ComputerGroup
+IpxeStategy
+startegytemplateid
+configurationdata
+GlobalIpxeStrategy
+IpxeStrategy
