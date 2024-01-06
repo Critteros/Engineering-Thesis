@@ -102,6 +102,18 @@ The rules defined in the \texttt{exports} field are used to resolve the import s
   \caption{Example import, importing individual files from the \textbf{common} package. This is allowed due to the \texttt{exports} field as shown in listing \ref{code:package-exports}}
 \end{listing}
 
-% \subsection{Service containers}
+\subsection{Service containers}
+
+The \texttt{backend} application requires a \texttt{PostgreSQL} database and a \texttt{Redis} instance to run.
+These services are provided using \texttt{Docker} containers, defined in the \texttt{compose.yml} file.
+Docker compose \cite{docker-compose} is used to manage the containers and their configuration.
+
+\begin{listing}[H]
+  \yamlfile{implementation/code/compose.yml}
+  \caption{Docker compose configuration file}
+\end{listing}
+
+The values for database user and password are taken from the enviroment with predefined value if not set.
+
 
 \end{document}
