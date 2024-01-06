@@ -1,0 +1,22 @@
+packages
+├── tsconfig
+│   ├── base.json
+│   ├── nestjs.json
+│   ├── package.json
+│   ├── nextjs.json
+│   └── react-library.json
+├── eslint-config-hydra
+│   ├── nest.js
+│   ├── next.js
+│   ├── package.json
+│   ├── react.js
+│   └── node.js
+├── prettier-config
+│   ├── package.json
+│   └── index.cjs
+└── common
+    ├── setupTest.ts
+    ├── src
+    ├── package.json
+    ├── tsconfig.json
+    └── tsup.config.ts

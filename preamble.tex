@@ -41,6 +41,11 @@
 % SVG support
 \usepackage[inkscapearea=page, inkscapepath=build, inkscapelatex=false]{svg}
 
+% Handling unicode that minted cannot
+% \usepackage{verbatim}
+% \usepackage{pmboxdraw}
+% \usepackage{sverb}
+
 % Colors
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -67,8 +72,12 @@
   \newmintedfile{html}{#1}%
   \newminted{js}{#1}%
   \newmintedfile{js}{#1}%
+  \newminted{ts}{#1}%
+  \newmintedfile{ts}{#1}%
   \newminted{json}{#1}%
   \newmintedfile{json}{#1}%
+  \newminted{toml}{#1}%
+  \newmintedfile{toml}{#1}%
 }
 \makemintedenvs{
   fontsize=\footnotesize,

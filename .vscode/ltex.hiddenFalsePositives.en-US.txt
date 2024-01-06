@@ -21,3 +21,8 @@
 {"rule":"EN_UNPAIRED_BRACKETS","sentence":"^\\QThe type of variable can be explicitly provided by suffixing the value with the colon character (:) and the type of the variable.\\E$"}
 {"rule":"ENGLISH_WORD_REPEAT_RULE","sentence":"^\\QiPXE> show os os:string = windows10\\E$"}
 {"rule":"ENGLISH_WORD_REPEAT_RULE","sentence":"^\\QiPXE> show os os:string = windows10 Contents of the os variable after selecting the windows10 entry in the menu shown in figure \\E(?:Dummy|Ina|Jimmy-)[0-9]+$"}
+{"rule":"POSSESSIVE_APOSTROPHE","sentence":"^\\QThe packages directory contains all the shared code used in the project.\\E$"}
+{"rule":"POSSESSIVE_APOSTROPHE","sentence":"^\\QOther packages from figure \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q are used to provide the same configuration settings to all application in the apps directory.\\E$"}
+{"rule":"POSSESSIVE_APOSTROPHE","sentence":"^\\QTo avoid this problem, the exports field in the package.json file is used to define the entry points for the package.\\E$"}
+{"rule":"POSSESSIVE_APOSTROPHE","sentence":"^\\QThe rules defined in the exports field are used to resolve the import specifiers.\\E$"}
+{"rule":"POSSESSIVE_APOSTROPHE","sentence":"^\\QThis is allowed due to the exports field as shown in listing \\E(?:Dummy|Ina|Jimmy-)[0-9]+$"}

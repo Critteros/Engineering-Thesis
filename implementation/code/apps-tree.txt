@@ -1,0 +1,32 @@
+apps
+├── backend
+│   ├── README.md
+│   ├── src
+│   ├── media
+│   ├── schema.gql
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── prisma
+│   ├── setupTestEnv.ts
+│   ├── tsconfig.build.json
+│   └── nest-cli.json
+├── cli
+│   ├── setupTest.ts
+│   ├── README.md
+│   ├── src
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── tsconfig.build.json
+│   └── nest-cli.json
+└── web
+    ├── README.md
+    ├── src
+    ├── codegen.ts
+    ├── postcss.config.cjs
+    ├── next-env.d.ts
+    ├── package.json
+    ├── tsconfig.json
+    ├── next.config.mjs
+    ├── tailwind.config.ts
+    ├── components.json
+    └── public

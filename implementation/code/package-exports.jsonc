@@ -1,0 +1,24 @@
+{
+  // ...
+  "exports": {
+    ".": {
+      "types": "./dist/*.d.ts",
+      "dev": "./src/index.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "dev": "./src/*.ts",
+      "require": [
+        "./dist/*.cjs",
+        "./dist/*/index.cjs"
+      ],
+      "import": [
+        "./dist/*.js",
+        "./dist/*/index.js"
+      ]
+    }
+  }
+  // ...
+}
