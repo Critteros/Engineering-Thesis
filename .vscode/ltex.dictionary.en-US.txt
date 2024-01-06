@@ -94,3 +94,9 @@ startegytemplateid
 configurationdata
 GlobalIpxeStrategy
 IpxeStrategy
+cjs
+prettier-plugin-jsdoc
+JSDoc
+JSDoc
+prettier-plugin-tailwindcss
+prettier-plugin-tailwindcss

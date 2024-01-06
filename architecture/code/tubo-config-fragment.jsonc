@@ -1,0 +1,35 @@
+{
+  //...
+  "pipeline": {
+    "build": {
+      "cache": false,
+      "dependsOn": ["db:generate", "^build"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+    },
+    "lint": {
+      "dependsOn": ["db:generate", "^build"]
+    },
+    "test": {
+      "dependsOn": ["^build", "^test", "db:generate"],
+      "outputs": ["coverage/**"]
+    },
+    "dev": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "db:generate": {
+      "cache": false
+    },
+    "db:push": {
+      "cache": false
+    },
+    "db:migrate": {
+      "cache": false
+    },
+    "clean": {
+      "cache": false
+    }
+  }
+  //...
+}

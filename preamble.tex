@@ -38,6 +38,9 @@
 \usepackage{tabularray}
 \usepackage{tabularx} % for more flexible tables
 
+% SVG support
+\usepackage[inkscapearea=page, inkscapepath=build, inkscapelatex=false]{svg}
+
 % Colors
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -62,6 +65,10 @@
   \newmintedfile{text}{#1}%
   \newminted{html}{#1}%
   \newmintedfile{html}{#1}%
+  \newminted{js}{#1}%
+  \newmintedfile{js}{#1}%
+  \newminted{json}{#1}%
+  \newmintedfile{json}{#1}%
 }
 \makemintedenvs{
   fontsize=\footnotesize,

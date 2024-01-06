@@ -261,4 +261,115 @@ This table store only one entry, and it is created during the database seeding \
 
 \subsection{Version control and tooling}
 
+\subsubsection{Version control}
+
+The version control system (VCS) used for the project is \texttt{Git} \cite{git}. Git is a distributed VCS that is widely used in the software development industry.
+It is also the primary VSC system used on GitHub \cite{github}, which is the platform used for hosting the project source code.
+
+
+\subsubsection{Continuous integration}
+
+The continuous integration (CI) system used for the project is \texttt{GitHub Actions} \cite{github-actions}.
+Github Actions is as CI system provided by GitHub.
+It is configured using \texttt{YAML} files that are stored in the \texttt{.github/workflows} directory in the repository.
+
+\subsubsection{Code formatting}
+
+The code formatting is enforced using \texttt{Prettier} \cite{prettier}.
+Prettier is opinionated code formatter which means that is limited in terms of configuration.
+This is by design as it is meant to be used without any configuration.
+
+Additionaly \texttt{Prettier} supports custom plugins. The plugins that were used for the project include:
+
+\begin{itemize}
+  \item \texttt{prettier-plugin-sort-import} - Automatic sorting of import statements
+  \item \texttt{prettier-plugin-jsdoc} - Automatic formatting of JSDoc \cite{jsdoc} comments
+  \item \texttt{prettier-plugin-tailwindcss} - Automatic sorting of TailwindCSS \cite{tailwindcss} classes
+\end{itemize}
+
+The code formatting style that is used is to always end an expression with a semicolon and to use single quotes for strings.
+Tab width is set to 2 spaces and the maximum line length is set to 100 characters. Tabs are prohibited and spaces are used for indentation.
+The prettier configuration file shown in listing \ref{code:prettier_config} defines these rules.
+
+\begin{listing}[H]
+  \jsfile{architecture/code/prettier_config.cjs}
+  \caption{Prettier configuration}
+  \label{code:prettier_config}
+\end{listing}
+
+
+\subsubsection{Linting}
+
+Code linting is the process of analyzing the source code for potential errors and other issues that may lead to bugs.
+The linter used for the project is \texttt{ESLint} \cite{eslint}. ESLint is a Javascript linter that is highly configurable and supports custom plugins.
+To support Typescript, the \texttt{typescript-eslint} \cite{typescript-eslint} plugin is used.
+
+The ESLint configuration is based on the scrit rule set offered by the \texttt{typescript-eslint} and \texttt{eslint-plugin-unicorn} \cite{eslint-plugin-unicorn} packages.
+The \texttt{typescript-eslint} package provides a set of rules that are specific to Typescript and the \texttt{eslint-plugin-unicorn} package provides a set of rules that are considered to be best practices.
+
+\subsubsection{Testing}
+
+The testing framework of choice for the project is \texttt{Jest} \cite{jest}. Jest is a Javascript testing framework developed by Facebook.
+It is highly configurable and provides tools for mocking and code coverage analysis. It was chosen beacause of its popularity and ease of use alongside wide compatibility.
+The downside of Jest is that it requires a lot of configuration to work properly with Typescript and have limited EcmaScript module (ESM) support.
+
+Additionaly to support testing with database the \texttt{Testcontainers} \cite{testcontainers} library is used to start a PostgreSQL database in a Docker container.
+
+\subsection{Monorepo}
+
+The project is structured as a monorepo. A monorepo is a software development approach where all the code for a project is stored in a single repository.
+This approach is in contrast to the traditional approach where the code is split into multiple repositories.
+The standard boundaries for splitting the code into multiple repositories are the applications and libraries.
+Monorepo approach sattes that all the code for the project should be stored in a single repository. Thus, the applications and libraries are stored in the same repository.
+
+The monorepo approach has several advantages over the traditional approach:
+\begin{itemize}
+  \item \textbf{Ease of code sharing} - Code sharing is simplified as all the code is stored in a single repository
+  \item \textbf{Simplified dependency management} - Dependency management is simplified as all the dependencies are stored in a single repository, making it easier to versin them
+  \item \textbf{Easier refactoring} - Refactoring involves less risk as all the code is stored in a single repository. This makes it easier to catch breaking changes and fix them before they are merged into the main branch
+\end{itemize}
+
+Companies such as Google \cite{google-monorepo} and Facebook \cite{facebook-monorepo} use the monorepo approach for their projects.
+
+To manage the monorepo the \texttt{Turborepo} \cite{turborepo} tool is used. Turborepo is a tool used to manage complexity and relations between packages and applications in a monorepo.
+Alongside \texttt{Pnpm Workspaces} \cite{pnpm-workspaces} it provides a simplified way of managing dependencies in a monorepo. Pnpm Workspaces is a tool for managing dependencies in a monorepo.
+It ensures that if a given dependency is used by multiple packages, it is installed only once. This reduces the size of the node modules directory and speeds up the installation process.
+
+Turborepo is used to manage the relations between packages and applications in a monorepo. It allows for the creation of a dependency graph between packages and applications.
+This ensures that the packages and applications are built in the correct order. It also provides a way to run commands in all the packages and applications at once.
+
+The project will consist of the following packages and applications:
+\begin{itemize}
+  \item \textbf{backend} - The backend application
+  \item \textbf{web} - The frontend application
+  \item \textbf{cli} - The command line interface application for secure operations on the backend
+  \item \textbf{common} - Common code shared between the packages and applications
+  \item \textbf{tsconfig} - Package containing the Typescript configuration
+  \item \textbf{prettier-config} - Package containing the Prettier configuration
+  \item \textbf{eslint-config-hydra} - Package containing the ESLint configuration. \texttt{Hydra} is the code name for the project
+
+\end{itemize}
+
+\begin{listing}[H]
+  \jsonfile{architecture/code/tubo-config-fragment.jsonc}
+  \caption{Fragment of the Turborepo configuration file}
+  \label{code:tubo-config-fragment}
+\end{listing}
+
+In the Turborepo configuration file shown in listing \ref{code:tubo-config-fragment} the dependencies between packages and applications are defined.
+For example the \texttt{build} operation is defined as non cachable operation, and it depends on \texttt{db:generate} and the upstream \texttt{build} operations.
+The upstream dependencies mean that if package \textbf{A} depends on package \textbf{B}, then the \texttt{build} operation of package \textbf{A} depends on the \texttt{build} operation of package \textbf{B}.
+In that case the execution order of the \texttt{build} operation is \textbf{B} then \textbf{A}.
+
+
+\begin{figure}[H]
+  \centering
+  \includesvg[width=\textwidth]{monorepo/dependency_graph.svg}
+  \caption{Dependencies between tasks in the monorepo}
+  \label{fig:monorepo_dependency_graph}
+\end{figure}
+
+Turborepo allows for the creation of a dependency graph between packages and applications. The graph shown in figure \ref{fig:monorepo_dependency_graph} was generated using the \texttt{tubo build --graph} command.
+
+
 \end{document}

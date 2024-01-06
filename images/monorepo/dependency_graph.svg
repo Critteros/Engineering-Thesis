@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1099pt" height="332pt" viewBox="0.00 0.00 1098.56 332.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 328)">
+<title>%0</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-328 1094.5563,-328 1094.5563,4 -4,4"/>
+<!-- backend#build -->
+<g id="node1" class="node">
+<title>backend#build</title>
+<ellipse fill="none" stroke="#000000" cx="493.5619" cy="-306" rx="67.7837" ry="18"/>
+<text text-anchor="middle" x="493.5619" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#000000">backend#build</text>
+</g>
+<!-- backend#db:generate -->
+<g id="node2" class="node">
+<title>backend#db:generate</title>
+<ellipse fill="none" stroke="#000000" cx="906.5619" cy="-90" rx="93.1639" ry="18"/>
+<text text-anchor="middle" x="906.5619" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">backend#db:generate</text>
+</g>
+<!-- backend#build&#45;&gt;backend#db:generate -->
+<g id="edge1" class="edge">
+<title>backend#build-&gt;backend#db:generate</title>
+<path fill="none" stroke="#000000" d="M541.3492,-293.174C626.2193,-269.724 798.9082,-218.7804 847.5619,-180 868.5295,-163.2874 884.5305,-137.0279 894.5438,-117.1781"/>
+<polygon fill="#000000" stroke="#000000" points="897.7706,-118.5448 898.9739,-108.0185 891.469,-115.4969 897.7706,-118.5448"/>
+</g>
+<!-- common#build -->
+<g id="node3" class="node">
+<title>common#build</title>
+<ellipse fill="none" stroke="#000000" cx="494.5619" cy="-234" rx="69.5283" ry="18"/>
+<text text-anchor="middle" x="494.5619" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">common#build</text>
+</g>
+<!-- backend#build&#45;&gt;common#build -->
+<g id="edge2" class="edge">
+<title>backend#build-&gt;common#build</title>
+<path fill="none" stroke="#000000" d="M493.8143,-287.8314C493.9212,-280.131 494.0484,-270.9743 494.1672,-262.4166"/>
+<polygon fill="#000000" stroke="#000000" points="497.6669,-262.4609 494.3062,-252.4133 490.6675,-262.3637 497.6669,-262.4609"/>
+</g>
+<!-- eslint&#45;config&#45;hydra#build -->
+<g id="node4" class="node">
+<title>eslint-config-hydra#build</title>
+<ellipse fill="none" stroke="#000000" cx="168.5619" cy="-162" rx="109.9537" ry="18"/>
+<text text-anchor="middle" x="168.5619" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">eslint-config-hydra#build</text>
+</g>
+<!-- backend#build&#45;&gt;eslint&#45;config&#45;hydra#build -->
+<g id="edge3" class="edge">
+<title>backend#build-&gt;eslint-config-hydra#build</title>
+<path fill="none" stroke="#000000" d="M450.6193,-292.0291C420.5478,-281.861 379.6344,-267.2517 344.5619,-252 296.7487,-231.2078 243.7005,-203.3972 208.4699,-184.2212"/>
+<polygon fill="#000000" stroke="#000000" points="209.9215,-181.0258 199.4684,-179.2984 206.5627,-187.1674 209.9215,-181.0258"/>
+</g>
+<!-- prettier&#45;config#build -->
+<g id="node5" class="node">
+<title>prettier-config#build</title>
+<ellipse fill="none" stroke="#000000" cx="387.5619" cy="-162" rx="91.4712" ry="18"/>
+<text text-anchor="middle" x="387.5619" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">prettier-config#build</text>
+</g>
+<!-- backend#build&#45;&gt;prettier&#45;config#build -->
+<g id="edge4" class="edge">
+<title>backend#build-&gt;prettier-config#build</title>
+<path fill="none" stroke="#000000" d="M460.8156,-289.9596C445.1306,-280.7908 427.2607,-267.93 415.5619,-252 402.221,-233.834 395.1304,-209.1632 391.4263,-190.2455"/>
+<polygon fill="#000000" stroke="#000000" points="394.8285,-189.3824 389.6567,-180.1356 387.9333,-190.5893 394.8285,-189.3824"/>
+</g>
+<!-- tsconfig#build -->
+<g id="node6" class="node">
+<title>tsconfig#build</title>
+<ellipse fill="none" stroke="#000000" cx="771.5619" cy="-162" rx="66.6556" ry="18"/>
+<text text-anchor="middle" x="771.5619" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">tsconfig#build</text>
+</g>
+<!-- backend#build&#45;&gt;tsconfig#build -->
+<g id="edge5" class="edge">
+<title>backend#build-&gt;tsconfig#build</title>
+<path fill="none" stroke="#000000" d="M527.9918,-290.3407C550.745,-279.8333 581.1342,-265.4956 607.5619,-252 651.5827,-229.5203 701.2251,-201.9604 734.2469,-183.3055"/>
+<polygon fill="#000000" stroke="#000000" points="736.1242,-186.2647 743.1015,-178.2917 732.6751,-180.1734 736.1242,-186.2647"/>
+</g>
+<!-- ___ROOT___ -->
+<g id="node7" class="node">
+<title>___ROOT___</title>
+<ellipse fill="none" stroke="#000000" cx="583.5619" cy="-18" rx="66.08" ry="18"/>
+<text text-anchor="middle" x="583.5619" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">___ROOT___</text>
+</g>
+<!-- backend#db:generate&#45;&gt;___ROOT___ -->
+<g id="edge6" class="edge">
+<title>backend#db:generate-&gt;___ROOT___</title>
+<path fill="none" stroke="#000000" d="M845.4284,-76.3727C787.9747,-63.5657 702.444,-44.5 644.918,-31.6769"/>
+<polygon fill="#000000" stroke="#000000" points="645.3931,-28.197 634.8712,-29.4374 643.8701,-35.0293 645.3931,-28.197"/>
+</g>
+<!-- common#build&#45;&gt;eslint&#45;config&#45;hydra#build -->
+<g id="edge14" class="edge">
+<title>common#build-&gt;eslint-config-hydra#build</title>
+<path fill="none" stroke="#000000" d="M441.4588,-222.2717C387.7939,-210.4193 304.3808,-191.9968 243.8948,-178.6379"/>
+<polygon fill="#000000" stroke="#000000" points="244.5348,-175.195 234.0153,-176.456 243.0251,-182.0303 244.5348,-175.195"/>
+</g>
+<!-- common#build&#45;&gt;prettier&#45;config#build -->
+<g id="edge15" class="edge">
+<title>common#build-&gt;prettier-config#build</title>
+<path fill="none" stroke="#000000" d="M469.4752,-217.1192C455.2991,-207.5801 437.3735,-195.5181 421.9081,-185.1115"/>
+<polygon fill="#000000" stroke="#000000" points="423.8593,-182.2058 413.6088,-179.5269 419.9514,-188.0134 423.8593,-182.2058"/>
+</g>
+<!-- common#build&#45;&gt;tsconfig#build -->
+<g id="edge16" class="edge">
+<title>common#build-&gt;tsconfig#build</title>
+<path fill="none" stroke="#000000" d="M543.7648,-221.2108C591.2792,-208.8605 663.2368,-190.1567 713.526,-177.0851"/>
+<polygon fill="#000000" stroke="#000000" points="714.4834,-180.4527 723.2813,-174.5495 712.7224,-173.6778 714.4834,-180.4527"/>
+</g>
+<!-- common#db:generate -->
+<g id="node10" class="node">
+<title>common#db:generate</title>
+<ellipse fill="none" stroke="#000000" cx="591.5619" cy="-162" rx="94.909" ry="18"/>
+<text text-anchor="middle" x="591.5619" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">common#db:generate</text>
+</g>
+<!-- common#build&#45;&gt;common#db:generate -->
+<g id="edge13" class="edge">
+<title>common#build-&gt;common#db:generate</title>
+<path fill="none" stroke="#000000" d="M517.5496,-216.937C530.1689,-207.57 546.0097,-195.8119 559.795,-185.5796"/>
+<polygon fill="#000000" stroke="#000000" points="562.1218,-188.2113 568.0655,-179.4407 557.9496,-182.5905 562.1218,-188.2113"/>
+</g>
+<!-- eslint&#45;config&#45;hydra#db:generate -->
+<g id="node11" class="node">
+<title>eslint-config-hydra#db:generate</title>
+<ellipse fill="none" stroke="#000000" cx="168.5619" cy="-90" rx="134.8336" ry="18"/>
+<text text-anchor="middle" x="168.5619" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">eslint-config-hydra#db:generate</text>
+</g>
+<!-- eslint&#45;config&#45;hydra#build&#45;&gt;eslint&#45;config&#45;hydra#db:generate -->
+<g id="edge18" class="edge">
+<title>eslint-config-hydra#build-&gt;eslint-config-hydra#db:generate</title>
+<path fill="none" stroke="#000000" d="M168.5619,-143.8314C168.5619,-136.131 168.5619,-126.9743 168.5619,-118.4166"/>
+<polygon fill="#000000" stroke="#000000" points="172.062,-118.4132 168.5619,-108.4133 165.062,-118.4133 172.062,-118.4132"/>
+</g>
+<!-- prettier&#45;config#db:generate -->
+<g id="node12" class="node">
+<title>prettier-config#db:generate</title>
+<ellipse fill="none" stroke="#000000" cx="438.5619" cy="-90" rx="116.8518" ry="18"/>
+<text text-anchor="middle" x="438.5619" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">prettier-config#db:generate</text>
+</g>
+<!-- prettier&#45;config#build&#45;&gt;prettier&#45;config#db:generate -->
+<g id="edge20" class="edge">
+<title>prettier-config#build-&gt;prettier-config#db:generate</title>
+<path fill="none" stroke="#000000" d="M400.4314,-143.8314C406.3349,-135.497 413.4468,-125.4567 419.9213,-116.3162"/>
+<polygon fill="#000000" stroke="#000000" points="422.9491,-118.0967 425.8732,-107.9134 417.2369,-114.0506 422.9491,-118.0967"/>
+</g>
+<!-- tsconfig#db:generate -->
+<g id="node13" class="node">
+<title>tsconfig#db:generate</title>
+<ellipse fill="none" stroke="#000000" cx="703.5619" cy="-90" rx="92.0354" ry="18"/>
+<text text-anchor="middle" x="703.5619" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">tsconfig#db:generate</text>
+</g>
+<!-- tsconfig#build&#45;&gt;tsconfig#db:generate -->
+<g id="edge22" class="edge">
+<title>tsconfig#build-&gt;tsconfig#db:generate</title>
+<path fill="none" stroke="#000000" d="M754.7529,-144.2022C746.498,-135.4617 736.4084,-124.7786 727.3756,-115.2144"/>
+<polygon fill="#000000" stroke="#000000" points="729.824,-112.7095 720.4132,-107.8425 724.7349,-117.5159 729.824,-112.7095"/>
+</g>
+<!-- cli#build -->
+<g id="node8" class="node">
+<title>cli#build</title>
+<ellipse fill="none" stroke="#000000" cx="282.5619" cy="-306" rx="45.2439" ry="18"/>
+<text text-anchor="middle" x="282.5619" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#000000">cli#build</text>
+</g>
+<!-- cli#build&#45;&gt;common#build -->
+<g id="edge8" class="edge">
+<title>cli#build-&gt;common#build</title>
+<path fill="none" stroke="#000000" d="M317.0952,-294.2717C351.1666,-282.7003 403.6772,-264.8665 442.7505,-251.5963"/>
+<polygon fill="#000000" stroke="#000000" points="444.0322,-254.8574 452.3755,-248.3275 441.7811,-248.2293 444.0322,-254.8574"/>
+</g>
+<!-- cli#build&#45;&gt;eslint&#45;config&#45;hydra#build -->
+<g id="edge9" class="edge">
+<title>cli#build-&gt;eslint-config-hydra#build</title>
+<path fill="none" stroke="#000000" d="M268.8109,-288.6302C248.9759,-263.5756 212.191,-217.1104 189.1209,-187.9692"/>
+<polygon fill="#000000" stroke="#000000" points="191.6706,-185.5511 182.7194,-179.8831 186.1823,-189.896 191.6706,-185.5511"/>
+</g>
+<!-- cli#build&#45;&gt;prettier&#45;config#build -->
+<g id="edge10" class="edge">
+<title>cli#build-&gt;prettier-config#build</title>
+<path fill="none" stroke="#000000" d="M295.2274,-288.6302C313.4964,-263.5756 347.3772,-217.1104 368.626,-187.9692"/>
+<polygon fill="#000000" stroke="#000000" points="371.4584,-190.0253 374.5222,-179.8831 365.8024,-185.9011 371.4584,-190.0253"/>
+</g>
+<!-- cli#build&#45;&gt;tsconfig#build -->
+<g id="edge11" class="edge">
+<title>cli#build-&gt;tsconfig#build</title>
+<path fill="none" stroke="#000000" d="M325.1488,-299.5937C400.6332,-288.0188 552.0149,-263.7354 573.5619,-252 592.8891,-241.4736 588.9864,-227.8024 607.5619,-216 625.6765,-204.4904 674.8373,-188.9616 714.6453,-177.5108"/>
+<polygon fill="#000000" stroke="#000000" points="715.6206,-180.8723 724.2788,-174.766 713.7024,-174.1402 715.6206,-180.8723"/>
+</g>
+<!-- cli#db:generate -->
+<g id="node9" class="node">
+<title>cli#db:generate</title>
+<ellipse fill="none" stroke="#000000" cx="70.5619" cy="-234" rx="70.6239" ry="18"/>
+<text text-anchor="middle" x="70.5619" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">cli#db:generate</text>
+</g>
+<!-- cli#build&#45;&gt;cli#db:generate -->
+<g id="edge7" class="edge">
+<title>cli#build-&gt;cli#db:generate</title>
+<path fill="none" stroke="#000000" d="M248.0286,-294.2717C214.0654,-282.737 161.7799,-264.9797 122.7459,-251.7228"/>
+<polygon fill="#000000" stroke="#000000" points="123.7211,-248.3578 113.1267,-248.456 121.4699,-254.9859 123.7211,-248.3578"/>
+</g>
+<!-- cli#db:generate&#45;&gt;___ROOT___ -->
+<g id="edge12" class="edge">
+<title>cli#db:generate-&gt;___ROOT___</title>
+<path fill="none" stroke="#000000" d="M56.1052,-216.2243C31.3361,-183.5377 -13.0765,-113.4496 24.5619,-72 56.3862,-36.9533 361.6542,-24.0033 507.1546,-19.7938"/>
+<polygon fill="#000000" stroke="#000000" points="507.4515,-23.2869 517.3485,-19.5056 507.2536,-16.2897 507.4515,-23.2869"/>
+</g>
+<!-- common#db:generate&#45;&gt;___ROOT___ -->
+<g id="edge17" class="edge">
+<title>common#db:generate-&gt;___ROOT___</title>
+<path fill="none" stroke="#000000" d="M590.5487,-143.7623C589.1842,-119.201 586.7423,-75.2474 585.1371,-46.3541"/>
+<polygon fill="#000000" stroke="#000000" points="588.6163,-45.88 584.5669,-36.0896 581.6271,-46.2684 588.6163,-45.88"/>
+</g>
+<!-- eslint&#45;config&#45;hydra#db:generate&#45;&gt;___ROOT___ -->
+<g id="edge19" class="edge">
+<title>eslint-config-hydra#db:generate-&gt;___ROOT___</title>
+<path fill="none" stroke="#000000" d="M251.0487,-75.689C329.275,-62.1172 445.2935,-41.9887 517.5685,-29.4495"/>
+<polygon fill="#000000" stroke="#000000" points="518.2135,-32.8899 527.468,-27.732 517.0169,-25.993 518.2135,-32.8899"/>
+</g>
+<!-- prettier&#45;config#db:generate&#45;&gt;___ROOT___ -->
+<g id="edge21" class="edge">
+<title>prettier-config#db:generate-&gt;___ROOT___</title>
+<path fill="none" stroke="#000000" d="M473.293,-72.7542C494.1131,-62.4159 520.6987,-49.2148 542.5487,-38.3652"/>
+<polygon fill="#000000" stroke="#000000" points="544.1924,-41.4568 551.5924,-33.8745 541.0792,-35.1872 544.1924,-41.4568"/>
+</g>
+<!-- tsconfig#db:generate&#45;&gt;___ROOT___ -->
+<g id="edge23" class="edge">
+<title>tsconfig#db:generate-&gt;___ROOT___</title>
+<path fill="none" stroke="#000000" d="M674.8189,-72.7542C658.4043,-62.9054 637.6594,-50.4585 620.0978,-39.9215"/>
+<polygon fill="#000000" stroke="#000000" points="621.6199,-36.7531 611.2442,-34.6094 618.0184,-42.7556 621.6199,-36.7531"/>
+</g>
+<!-- web#build -->
+<g id="node14" class="node">
+<title>web#build</title>
+<ellipse fill="none" stroke="#000000" cx="631.5619" cy="-306" rx="51.6093" ry="18"/>
+<text text-anchor="middle" x="631.5619" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#000000">web#build</text>
+</g>
+<!-- web#build&#45;&gt;common#build -->
+<g id="edge24" class="edge">
+<title>web#build-&gt;common#build</title>
+<path fill="none" stroke="#000000" d="M602.8422,-290.9064C583.0697,-280.515 556.53,-266.5672 534.6744,-255.081"/>
+<polygon fill="#000000" stroke="#000000" points="536.1082,-251.8807 525.6279,-250.3267 532.8517,-258.0771 536.1082,-251.8807"/>
+</g>
+<!-- web#build&#45;&gt;eslint&#45;config&#45;hydra#build -->
+<g id="edge25" class="edge">
+<title>web#build-&gt;eslint-config-hydra#build</title>
+<path fill="none" stroke="#000000" d="M592.2804,-294.0401C585.077,-291.952 577.609,-289.8564 570.5619,-288 502.1725,-269.9844 483.1513,-272.817 415.5619,-252 373.2034,-238.9539 364.1466,-231.335 322.5619,-216 290.6787,-204.2426 254.8666,-191.6487 225.8058,-181.5831"/>
+<polygon fill="#000000" stroke="#000000" points="226.8194,-178.2303 216.2247,-178.2713 224.5326,-184.8462 226.8194,-178.2303"/>
+</g>
+<!-- web#build&#45;&gt;prettier&#45;config#build -->
+<g id="edge26" class="edge">
+<title>web#build-&gt;prettier-config#build</title>
+<path fill="none" stroke="#000000" d="M624.5897,-288.0222C615.7555,-267.5891 598.6021,-234.6608 573.5619,-216 555.2639,-202.3636 504.0802,-188.0068 460.0278,-177.5271"/>
+<polygon fill="#000000" stroke="#000000" points="460.7071,-174.0916 450.1723,-175.2179 459.1102,-180.907 460.7071,-174.0916"/>
+</g>
+<!-- web#build&#45;&gt;tsconfig#build -->
+<g id="edge27" class="edge">
+<title>web#build-&gt;tsconfig#build</title>
+<path fill="none" stroke="#000000" d="M652.0265,-289.418C664.4303,-279.0684 680.3558,-265.2385 693.5619,-252 714.0762,-231.4353 735.5647,-206.338 750.7804,-187.8757"/>
+<polygon fill="#000000" stroke="#000000" points="753.6819,-189.8566 757.304,-179.9001 748.2635,-185.4247 753.6819,-189.8566"/>
+</g>
+<!-- web#db:generate -->
+<g id="node15" class="node">
+<title>web#db:generate</title>
+<ellipse fill="none" stroke="#000000" cx="1013.5619" cy="-234" rx="76.9888" ry="18"/>
+<text text-anchor="middle" x="1013.5619" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">web#db:generate</text>
+</g>
+<!-- web#build&#45;&gt;web#db:generate -->
+<g id="edge28" class="edge">
+<title>web#build-&gt;web#db:generate</title>
+<path fill="none" stroke="#000000" d="M677.2606,-297.3866C743.2163,-284.9552 865.6642,-261.876 943.2023,-247.2615"/>
+<polygon fill="#000000" stroke="#000000" points="944.1867,-250.6377 953.3654,-245.3459 942.8901,-243.7588 944.1867,-250.6377"/>
+</g>
+<!-- web#db:generate&#45;&gt;___ROOT___ -->
+<g id="edge29" class="edge">
+<title>web#db:generate-&gt;___ROOT___</title>
+<path fill="none" stroke="#000000" d="M1019.6712,-215.9251C1029.6212,-182.7459 1044.8017,-111.8782 1008.5619,-72 985.4672,-46.5866 774.5206,-29.7373 658.7704,-22.3213"/>
+<polygon fill="#000000" stroke="#000000" points="658.7588,-18.8136 648.5579,-21.6756 658.3171,-25.7997 658.7588,-18.8136"/>
+</g>
+</g>
+</svg>
