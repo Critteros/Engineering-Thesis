@@ -1,0 +1,18 @@
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# To internet
+auto brout
+iface brout inet static
+        bridge_ports ens18
+                address 172.20.207.200
+                netmask 255.255.0.0
+                gateway 172.20.0.1
+
+# INTERNAL NEWTORK
+auto br0
+iface br0 inet static
+        bridge_ports ens19
+                address 10.0.0.1
+                netmask 255.255.255.0
