@@ -1,0 +1,21 @@
+auth
+├── auth.module.ts
+├── controllers
+│   └── auth.controller.ts
+├── decorators
+│   └── public.decorator.ts
+├── dto
+│   └── user-login.dto.ts
+├── guards
+│   ├── authenticated-or-public.guard.ts
+│   └── local-auth.guard.ts
+├── resolvers
+│   └── auth.resolver.ts
+├── serializers
+│   └── user.serializer.ts
+├── services
+│   ├── auth.service.ts
+│   └── tests
+│       └── auth.service.spec.ts
+└── strategies
+    └── local.strategy.ts
