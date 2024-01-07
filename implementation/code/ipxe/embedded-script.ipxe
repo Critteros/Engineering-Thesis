@@ -1,0 +1,15 @@
+#!ipxe
+
+dhcp
+echo Hydra IPXE Boot
+set ipparam BOOTIF=${netX/mac} ip=dhcp net.ifnames=0
+set url http://10.0.0.1:8000/api/ipxe/boot/${mac}
+goto boot
+
+:error
+echo Chain command failed. Checking error details..
+isset ${error} && echo Error details: ${error} || echo No error details available.
+prompt --key q Press 'q' to quit && exit || exit
+
+:boot
+chain ${url} || goto error

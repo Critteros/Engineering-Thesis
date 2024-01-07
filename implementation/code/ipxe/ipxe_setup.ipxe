@@ -1,0 +1,6 @@
+#!ipxe
+set ipparam BOOTIF=\${netX/mac} ip=dhcp net.ifnames=0
+set server_url {{{server_url}}}
+set media_url  {{{media_url}}}
+set boot_url {{{boot_url}}}
+goto boot
