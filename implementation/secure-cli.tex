@@ -99,5 +99,117 @@ The management module exposes a signel controller which define two routes:
 
 This controler does not use any authentication or authorization middleware, as it is not exposed to the internet and is only accessible by the \textbf{cli} application.
 
+\subsection{CLI application}
+
+The command line application was created using the \texttt{nestjs-commander} library \cite{nestjs-commander}, which allow creating CLI application using
+existijng nestjs constructs like services and dependency injection.
+
+Each command is represented by a class that extends the \texttt{CommandRunner} class from the \texttt{nestjs-commander} library.
+These classes have to at least implement the \texttt{run} method which is invoked when the command is executed.
+Additionaly command can define its name, description, arguments and options.
+
+Arguments and options represent the user input that is passed to the command.
+Arguments are positional and are passed to the command in the order they are defined.
+Options are passed to the command using the \texttt{--option-name} syntax.
+It is possible to define a short option name using the \texttt{-o} syntax.
+
+\begin{listing}[H]
+  \tsfile{implementation/code/cli/command-example.ts}
+  \caption{Fragemnt of class defining command that creates new admin user}
+\end{listing}
+
+Additionaly additional questions can be asked to user to fill in the missing arguments or options that were not passed to the command.
+This is implemented thorugh class that is decorated with \texttt{QuestionSet} decorator. Each method of this class represents a question that is asked to the user to fill in the missing data.
+
+\begin{listing}[H]
+  \tsfile{implementation/code/cli/question-example.ts}
+  \caption{Fragemnt of class defining question set that asks user for missing data}
+\end{listing}
+
+To invoke \texttt{cli} application, the \texttt{Node.js} interpreter is invoked on the compiled entrypoint file.
+
+\begin{listing}[H]
+  \begin{bashcode}
+    node dist/main.js
+  \end{bashcode}
+  \caption{Invoking \texttt{cli} application}
+\end{listing}
+
+This approach works but has the drawback of requiring the user to pass the script location to the \texttt{node} interpreter.
+To avoid providing this path and replicate a simialr behavior to other CLI applications, the following option can be added to the \texttt{package.json} file.
+
+\begin{listing}[H]
+  \jsonfile{implementation/code/cli/bin-entry.jsonc}
+  \caption{Adding \texttt{bin} entry to \texttt{package.json} file}
+\end{listing}
+
+Additionally, the \texttt{main.ts} file has to contain the shebang line that points to the \texttt{node} interpreter in the first line of the file.
+
+\begin{listing}[H]
+  \begin{bashcode}
+    #!/usr/bin/env node
+  \end{bashcode}
+  \caption{Shebang line in \texttt{main.ts} file}
+\end{listing}
+
+Now the \texttt{cli} application can be invoked using the following command, assuming the shim binary added by \texttt{npm} is in the \texttt{PATH} environment variable.
+When installing the application without using the \texttt{-g} flag, the shim binary is located in the \texttt{node\_modules/.bin} directory.
+
+\begin{listing}[H]
+  \begin{textcode}
+    $ hydra
+    Usage: main [options] [command]
+
+    Options:
+    -h, --help                      display help for command
+
+    Commands:
+    create-admin-user [options]     Create an admin user
+    create-standard-user [options]  Create an standard user
+    help [command]                  display help for command
+
+  \end{textcode}
+  \caption{Invoking \texttt{cli} application using shim binary}
+\end{listing}
+
+The help menus are generated automatically based on the command classes by the \texttt{nestjs-commander} library.
+Each command also has its own help menu that explains the usage of the command.
+
+\begin{listing}[H]
+  \begin{textcode}
+    $ hydra create-admin-user --help
+    Usage: main create-admin-user [options]
+
+    Create an admin user
+
+    Options:
+    -e, --email <email>        The email address of the user
+    -p, --password <password>  The password of the user
+    -n, --name <name>          The name of the user
+    -h, --help                 display help for command
+  \end{textcode}
+  \caption{Help for \texttt{create-admin-user} command}
+\end{listing}
+
+Command can be both invoked by passing all the required arguments and options or by passing only some of them and answering the questions asked by the command.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics{cli/cli-questions.png}
+  \caption{Example of \texttt{cli} application asking user for missing data}
+\end{figure}
+
+All of the values entered by the user are subjected to validation using the \texttt{class-validator} library \cite{class-validator}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics{cli/command-validation.png}
+  \caption{Command input validation}
+\end{figure}
+
+Validation is checked when entering answer to a question and when the command is executed.
+Checking the value when entering the answer to a question allows the user to correct the input before executing the command.
+If validation fails when executing the command, the error message is displayed and the command will return with a non-zero exit code.
+
 
 \end{document}
