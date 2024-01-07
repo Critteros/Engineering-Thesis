@@ -230,16 +230,85 @@ This mutation takes one parameter which is the unique identifier of the user tha
   \label{code:login-as-mutation}
 \end{listing}
 
-
-
 \subsection{Frontend integration}
 
 \subsubsection{Login page}
+
+The default route of the frontend application for unauthenticated users is the login page. This page is implemented in the \texttt{LoginPage} component
+located in directory \texttt{src/app/login/page.tsx}. Next.js read the contents of this file and provides it to user when they navigate to \texttt(/login) route.
+
+\begin{listing}[H]
+  \jsxfile{implementation/code/auth/login-page.tsx}
+  \caption{Login page component implementation. This is a server component}
+\end{listing}
+
+Login form is showed to the user if they are not authenticated.
+If authenticiated user tries to access the login page they will be redirected to the home page.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{auth/screens/login.png}
   \caption{Login page}
 \end{figure}
+
+The automatic rederirection of unauthorized users is implemented in the Next.js application middleware located in \texttt{src/middleware.ts} file.
+
+\begin{listing}[H]
+  \tsfile{implementation/code/auth/next-middleware.ts}
+  \caption{Next.js middleware for redirecting unauthorized users}
+\end{listing}
+
+\subsubsection{Roles pages}
+
+The root server component for the roles page fetches the data form server GrapgQL API and passes it to the \texttt{DataTable} component.
+DataTable is a table with advanced filtering and sorting capabilities. It is implemented using the \texttt{TanStack Table} library \cite{tanstack-table}.
+
+\begin{listing}[H]
+  \jsxfile{implementation/code/auth/roles-page.tsx}
+  \caption{Roles page component implementation. A fallback component is showne if the user last sufficient permissions}
+\end{listing}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{auth/screens/roles.png}
+  \caption{Roles page}
+\end{figure}
+
+Data table supports disabling selected columns, searching and sorting. It also supports pagination.
+Aftter selecing a row a delete button is shown. This button is disabled if the user does not have sufficient permissions.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{auth/screens/roles-fallback-page.png}
+  \caption{Roles page fallback component}
+\end{figure}
+
+Permissions columns show the number of assigned permission to a given role.
+Simillary the members column shown number of users that have been assigned a given role.
+Clicking on these number will open a model with transfer list component which can be used to assign permissions or users to a given role.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{auth/screens/editing-user-roles.png}
+  \caption{Assigning role to users}
+\end{figure}
+
+Each data mutation like creating, updating or deleting a role is peformed though the use of GraphQL mutations.
+Additionaly a toast notification is shown to the user to inform them about the result of the operation.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics{auth/screens/toast-example.png}
+  \caption{Example toast notification information the user about the result of the operation}
+\end{figure}
+
+To add new role the user has to click on the \texttt{Add role} button. This will open a modal with a form that can be used to create a new role.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{auth/screens/add-role.png}
+  \caption{Add role modal}
+\end{figure}
+
 
 \end{document}
