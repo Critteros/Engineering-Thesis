@@ -1,0 +1,8 @@
+config
+├── default.ts
+├── parser.ts
+├── resolver.ts
+├── schema.ts
+└── tests
+    ├── parser.spec.ts
+    └── resolver.spec.ts
