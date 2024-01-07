@@ -173,6 +173,42 @@ Permission system also define a middleware which checks the user permissions and
 This module defines two global guards which read the metadata set from permission decorators and check if the user has the required permissions to access the route.
 If user does not have the required permissions the request is rejected with HTTP status code \texttt{403 Forbidden}.
 
+\subsubsection{Roles creation and assignment}
+
+The role retrival and creation is implemented in the \texttt{RoleResolver} class. This class handles GraphQL queries and mutations related to roles.
+The exchanged data format is defined under the \texttt{schemas} subdirectory. Under this directory theree types of files can be found:
+
+\begin{itemize}
+  \item \textbf{.object.ts} - Object types, used to define the shape of the data that is exchanged between the client and the server through GraphQL API
+  \item \textbf{.input.ts} - Input types, used to define the shape of the data that is sent to the server
+  \item \textbf{.args.ts} - Similar to input types, but instead of defining the shape in object notation, the shape defined muration function arguments
+\end{itemize}
+
+\begin{listing}[H]
+  \tsfile{implementation/code/auth/role.object.ts}
+  \caption{Role object returned from the server}
+\end{listing}
+
+Object types in GraphQL APIs often contain another object types. In this case the \texttt{Role} object contains a list of \texttt{Permission} objects.
+In contrast to the REST API design where only the relation keys would be returned for permissions, GraphQL APIs are designed in this way to reduce the number of requests that have to be made to the server.
+This hover poses an implementation challange as the full data object alongside with all of its nested objects have to be returned from the database.
+GraphQL provides a solution to this problem in the form of \texttt{FieldResolvers} which are used to resolve nested objects.
+
+\begin{listing}[H]
+  \tsfile{implementation/code/auth/role.resolver.ts}
+  \caption{Fragemnt of the role resolver implementation}
+\end{listing}
+
+The above listing shows a fragement of the implementation of the \texttt{roles} resolver.
+The mutations are marked with the \texttt{@Mutation} decorator and the arguments are defined using the \texttt{@Args} decorator.
+Both \texttt[ArgTypes] and \texttt{InputTypes} can be used to define the shape of the arguments.
+Field resolvers take single arguemnt which is the object that is being resolved. In this case the \texttt{Role} object is being resolved.
+They are responsible for resolving the nested field after which the method is named.
+
+Resolvers hevilay rely on the services to perform the buisness logic. In this case this logic is defined in the \texttt{RolesService} class.
+Services are injected though the constructor function which in the case of listing \ref{code:auth-resolver} was omitted for brevity.
+
+
 \subsubsection{Admin login as other user}
 
 The last functionality that is implemented by the authorization and authenication system is the ability for the administrator to login as another user.
@@ -191,8 +227,19 @@ This mutation takes one parameter which is the unique identifier of the user tha
 \begin{listing}[H]
   \graphqlfile{implementation/code/auth/login-as-mutation.gql}
   \caption{Login as another user graphql mutation}
+  \label{code:login-as-mutation}
 \end{listing}
 
 
+
+\subsection{Frontend integration}
+
+\subsubsection{Login page}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{auth/screens/login.png}
+  \caption{Login page}
+\end{figure}
 
 \end{document}
