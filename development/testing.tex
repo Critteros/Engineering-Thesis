@@ -1,0 +1,79 @@
+% !TEX root = ../main.tex
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\section{Automated testing}
+
+Testing ensures that the application works as expected and that new features do not break existing functionality.
+During the application development process tests were heavily utilized to ensure that the application behaves as expected.
+Primary two types of tests were used: unit tests and integration tests.
+
+Unit tests are used to test the smallest units of code, usually functions or classes. They are used to test the functionality of the code in isolation.
+Integration tests were used to test how individual application functionalities work together. Integration tests were performed on the application as a whole, without mocking any of the dependencies.
+It also includes spinning up a database and testing the database queries.
+
+\subsection{Environment setup}
+
+The application services are run in Docker containers. The communication with the docker engine is done using the \texttt{Testcontainers} library.
+This library provides a simple interface to start container instances while also monitoring and cleaning up the containers after the tests are finished.
+
+An additional layer of abstraction was implemented to further simplify the integration tests. The \texttt{E2ETestManager} class
+found in the \texttt{e2e-test-manager.ts} file of the \texttt{backend} application is responsible for starting
+and stopping the application services. It also provides performs the database setup which includes applying the database migrations and seeding the database with constant data.
+Some operations performed by the \texttt{E2ETestManager} class are shown in the \ref{lst:e2e-test-manager} code snippet.
+
+\begin{listing}[H]
+  \tsfile{development/code/setup-example.ts}
+  \caption{Example of the \texttt{E2ETestManager} class usage}
+  \label{lst:e2e-test-manager}
+\end{listing}
+
+This reduces the amount of boilerplate code required to write integration test to only two lines of shown below.
+
+\begin{listing}[H]
+  \begin{tscode}
+    const manager = new E2ETestManager(TestModule);
+    manager.installHooks();
+  \end{tscode}
+  \caption{Example of the \texttt{E2ETestManager} usage in a test}
+\end{listing}
+
+\subsection{Performing authentication in tests}
+
+As most of the application endpoints require authentication, the tests clients need to be authenticated before they can perform requests.
+The \texttt{E2ETestManager} class provides a method to perform authentication by making a request to the \texttt{/auth/login} endpoint.
+
+\begin{listing}[H]
+  \tsfile{development/code/tests-login.ts}
+  \caption{Login method implementation}
+\end{listing}
+
+Login method utilizes agent from the \texttt{supertest} library to perform the request. The \texttt{supertest} library is used to test HTTP endpoints.
+Making a request to the \texttt{/auth/login} endpoint sets a session cookie which is used to authenticate the client in subsequent requests.
+
+\subsection{GraphQL API tests}
+
+\begin{listing}[H]
+  \tsfile{development/code/sample-test.ts}
+  \caption{Example of a GraphQL test}
+  \label{lst:graphql-test}
+\end{listing}
+
+Listing \ref{lst:graphql-test} shows an example of how GraphQL tests are written in the application.
+First the authentication is made using the \texttt{login} method from the \texttt{E2ETestManager} class.
+Then test data is inserted into the database utilizing \texttt{Prisma} ORM.
+
+The last part is performing the GraphQL request using the manager class and asset the response using test matchers from the \texttt{jest} library.
+
+\subsection{Unit tests}
+
+Unit tests are in contrast to the integration tests performed without the manager class. They execute a given function with parameters and asset the result.
+These tests often take a table of parameters and expected results as an input and perform the test for each of the parameters, example of which is shown in listing \ref{lst:unit-test}.
+
+\begin{listing}[H]
+  \tsfile{development/code/unit-test.ts}
+  \caption{Example of a unit test}
+  \label{lst:unit-test}
+\end{listing}
+
+\end{document}
