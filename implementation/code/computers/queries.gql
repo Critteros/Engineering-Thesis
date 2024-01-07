@@ -1,0 +1,6 @@
+type Query {
+  computers(standalone: Boolean): [Computer!]!
+  computer(where: WhereUniqueComputerInput!): Computer
+  computerGroups: [ComputerGroup!]!
+  computerGroup(where: WhereUniqueComputerGroupInput!): ComputerGroup
+}

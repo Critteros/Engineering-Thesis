@@ -1,0 +1,36 @@
+type Mutation {
+  createComputer(data: ComputerCreateInput!): Computer!
+  deleteComputers(where: [WhereUniqueComputerInput!]!): Int!
+  changeComputerViewOptions(
+    where: WhereUniqueComputerInput!
+    data: ComputerViewOptionsUpdateInput!
+  ): ComputerViewOptions!
+  changeComputerStrategy(
+    whichComputer: WhereUniqueComputerInput!
+    whichStrategy: WhereUniqueIpxeStrategyNullable
+  ): Computer!
+  createComputerGroup(data: ComputerGroupCreateInput!): ComputerGroup!
+  changeComputerGroupViewOptions(
+    where: WhereUniqueComputerGroupInput!
+    data: ComputerGroupViewOptionsUpdateInput!
+  ): ComputerGroupViewOptions!
+  addComputersToGroup(
+    where: WhereUniqueComputerGroupInput!
+    computers: [WhereUniqueComputerInput!]!
+  ): ComputerGroup!
+  removeComputersFromGroup(
+    where: WhereUniqueComputerGroupInput!
+    computers: [WhereUniqueComputerInput!]!
+  ): ComputerGroup!
+  moveComputers(
+    fromGroup: WhereUniqueComputerGroupInput!
+    toGroup: WhereUniqueComputerGroupInput!
+    computers: [WhereUniqueComputerInput!]!
+  ): [Computer!]!
+  deleteComputerGroups(where: [WhereUniqueComputerGroupInput!]!): Int!
+  moveComputerAndUpdateOrder(
+    computerGroupUid: String = null
+    whichComputer: WhereUniqueComputerInput!
+    newOrder: Int!
+  ): Boolean!
+}

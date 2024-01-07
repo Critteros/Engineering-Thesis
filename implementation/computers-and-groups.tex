@@ -54,5 +54,22 @@ A red border is shown around the group when the computer is dragged over it. The
   \caption{Drag and drop in action}
 \end{figure}
 
+\subsection{GraphQL's queries and mutations for computer management}
+
+The \texttt{ipxe} backend module offers the following queries and mutations for computer management.
+
+\begin{listing}[H]
+  \textfile{implementation/code/computers/queries.gql}
+  \caption{GraphQL queries for computer management}
+\end{listing}
+
+\begin{listing}[H]
+  \textfile{implementation/code/computers/mutations.gql}
+  \caption{GraphQL mutations for computer management}
+\end{listing}
+
+Comments and descriptions were removed in the above listings for brevity. The schema file with comments and descriptions can
+be browser by navigating to the \texttt{/api/graphql} endpoint of the backend server. All the above queries and mutations
+are used by the frontend application.
 
 \end{document}
