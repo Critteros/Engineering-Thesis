@@ -26,3 +26,4 @@
 {"rule":"POSSESSIVE_APOSTROPHE","sentence":"^\\QTo avoid this problem, the exports field in the package.json file is used to define the entry points for the package.\\E$"}
 {"rule":"POSSESSIVE_APOSTROPHE","sentence":"^\\QThe rules defined in the exports field are used to resolve the import specifiers.\\E$"}
 {"rule":"POSSESSIVE_APOSTROPHE","sentence":"^\\QThis is allowed due to the exports field as shown in listing \\E(?:Dummy|Ina|Jimmy-)[0-9]+$"}
+{"rule":"RETURN_IN_THE","sentence":"^\\QAn array of asset URLs is returned in the response body.\\E$"}
