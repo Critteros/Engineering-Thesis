@@ -258,7 +258,7 @@ The automatic rederirection of unauthorized users is implemented in the Next.js 
   \caption{Next.js middleware for redirecting unauthorized users}
 \end{listing}
 
-\subsubsection{Roles pages}
+\subsubsection{Roles page}
 
 The root server component for the roles page fetches the data form server GrapgQL API and passes it to the \texttt{DataTable} component.
 DataTable is a table with advanced filtering and sorting capabilities. It is implemented using the \texttt{TanStack Table} library \cite{tanstack-table}.
@@ -310,5 +310,37 @@ To add new role the user has to click on the \texttt{Add role} button. This will
   \caption{Add role modal}
 \end{figure}
 
+\subsubsection{Permission page}
+
+Permissions page serve the singular purpose of showing the user what permissions are available in the system.
+As this view is not used to perform any data mutations it is implemented using regular table component rather than the data table component.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{auth/screens/permissions.png}
+  \caption{Permissions page}
+\end{figure}
+
+\subsubsection{Users page}
+
+The last page that is implemented as a part of the authorization and authentication system is the users page.
+This page is implemented in the \texttt{UsersPage} component located in the \texttt{src/app/dashboard/users/page.tsx} file.
+This view allow for viewing, creating, updating and deleting users.
+Its design is similar to the design of the roles page. It uses the same data table component to display the data.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{auth/screens/users.png}
+  \caption{Users page}
+\end{figure}
+
+This views data table feature row context menu which can be used to perform actions on a given user.
+The presented actions depend on logged-in user permissions.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics{auth/screens/user-actions.png}
+  \caption{User context menu}
+\end{figure}
 
 \end{document}
