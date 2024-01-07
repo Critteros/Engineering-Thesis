@@ -1,0 +1,22 @@
+computers
+├── add-computer.tsx
+├── add-group.tsx
+├── computer-group-strategy-selector.tsx
+├── computer-group.tsx
+├── computer-mutations.ts
+├── computer-queries.ts
+├── computer-strategy-selector.tsx
+├── computers-view.tsx
+├── computer-table.tsx
+├── create-computer-form.tsx
+├── create-group-form.tsx
+├── delete-computer.tsx
+├── delete-group.tsx
+├── dnd-computer-table-body.tsx
+├── drag-context.tsx
+├── fallbacks
+│   ├── computers-read-fallback.tsx
+│   └── readonly-strategy-view.tsx
+├── global-strategy-selector.tsx
+├── page.tsx
+└── table-header.tsx
