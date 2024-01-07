@@ -1,0 +1,24 @@
+rbac
+├── constants
+│   └── permissions.constant.ts
+├── decorators
+│   ├── administrator-only.decorator.ts
+│   └── require-permissions.decorator.ts
+├── guards
+│   ├── admin-user.guard.ts
+│   └── permission.guard.ts
+├── middleware
+│   └── permissions.middleware.ts
+├── rbac.module.ts
+├── resolvers
+│   ├── permission.resolver.ts
+│   └── roles.resolver.ts
+├── schemas
+│   ├── assigned-permission.object.ts
+│   ├── create-role.input.ts
+│   ├── permission.object.ts
+│   ├── role-selection.args.ts
+│   └── roles.object.ts
+└── services
+    ├── permission.service.ts
+    └── roles.service.ts

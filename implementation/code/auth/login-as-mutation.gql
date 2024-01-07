@@ -1,0 +1,3 @@
+mutation {
+  adminLoginAsUser(uid: "clpzxd6nt0003rlpw847sals5")
+}

@@ -9,7 +9,7 @@
 
 \subsubsection{Structure}
 
-The code responsible for handling user authentication and authorization is located
+The code responsible for handling user authorization is located
 under \texttt{src/auth} directory in the \textbf{backend} app directory.
 
 \begin{figure}[H]
@@ -107,6 +107,90 @@ The data that is stored in the session is provided by the passport middleware.
 \begin{listing}[H]
   \tsfile{implementation/code/auth/passport.middleware.ts}
   \caption{Passport session middleware}
+\end{listing}
+
+\subsubsection{Route authentication}
+
+The \texttt{LocalAuthGuard} is used to authenticate the user when they are logging in. To authenticate the user when they are accessing a protected route
+a seperate guard has to be defined. The guard will read the session data from the request object and check if the user is authenticated.
+This logic is defined in \texttt{AuthenticatedOrPublic} guard, which is employed throughout the entire application to guarantee that only authenticated users have access.
+
+
+To allow access to certain routes for unauthenticated users, a decorator named \texttt{PublicHandler} was introduced. This decorator is utilized to annotate controllers and resolvers.
+
+\begin{listing}[H]
+  \tsfile{implementation/code/auth/public.decorator.ts}
+  \caption{Public decorator implementation}
+\end{listing}
+
+To implement this decorator the special object called \texttt{Reflector} is used. This object is provided by the NestJS framework and is used to read and write metadata.
+This is similar to annotations in \texttt{Java} or \texttt{C\#} languages. The medatata can be written to a class, method or a property. In this case the metadata is written to a class, that uses the \texttt{PublicHandler} decorator.
+Later this metadata is read by the \texttt{AuthenticatedOrPublic} guard to determine if the route should be accesible by unauthorized users.
+
+\begin{listing}[H]
+  \tsfile{implementation/code/auth/authenticated-or-public.guard.ts}
+  \caption{Authenticated or public guard implementation}
+\end{listing}
+
+The login router is an example of a route that is accessible by unauthenticated users. The \texttt{PublicHandler} decorator is used to mark the \texttt{login} method as public.
+
+\begin{listing}[H]
+  \tsfile{implementation/code/auth/login-full.controller.ts}
+  \caption{Full login router implementation}
+\end{listing}
+
+\subsubsection{Permission system}
+
+The permissions system implementation is located in the \texttt{src/rbac} directory. The directory structure is similar to the \texttt{auth} directory structure.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics{file-tree/backend-rbac-tree.png}
+  \caption{Backend rbac directory structure}
+\end{figure}
+
+Permissions are defined in the \texttt{permissions.constant.ts} file. These permissions are inserted into the database during the database seeding process.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{auth/db-permissions.png}
+  \caption{Permissions stored in the database after seeding}
+\end{figure}
+
+Each permission is defined by a unique identifier and a description. The identifier consist of category for which functionality the permission is defined and the name of the individual permission.
+The permissions system provides two decorators:
+\begin{itemize}
+  \item \textbf{RequirePermission} - Takes a list of permissions as an argument and assigns the medatadata to the decorated class, method or property
+  \item \textbf{AdministratorOnly} - Assigns metadata information that the decorated class, method or property can only be accessed by users with the \texttt{ADMIN} account type
+\end{itemize}
+
+Permission system also define a middleware which checks the user permissions and assign them to the request object.
+
+\begin{listing}[H]
+  \tsfile{implementation/code/auth/permission.middleware.ts}
+  \caption{Permissions middleware implementation}
+\end{listing}
+
+This module defines two global guards which read the metadata set from permission decorators and check if the user has the required permissions to access the route.
+If user does not have the required permissions the request is rejected with HTTP status code \texttt{403 Forbidden}.
+
+\subsubsection{Admin login as other user}
+
+The last functionality that is implemented by the authorization and authenication system is the ability for the administrator to login as another user.
+This functionality is implemented in the \texttt{AuthResolver} class. This resolver is used to handle GraphQL requests related to authentication and authorization.
+
+\begin{listing}[H]
+  \tsfile{implementation/code/auth/auth.resolver.ts}
+  \caption{Auth resolver implementation}
+  \label{code:auth-resolver}
+\end{listing}
+
+This resolver handles the \texttt{adminLoginAsUser} mutation. Frontend application can use this mutation to login as another user.
+Resolver uses the \texttt{AdministratorOnly} decorator to ensure that only users with the \texttt{ADMIN} account type can use this mutation.
+This mutation takes one parameter which is the unique identifier of the user that the administrator wants to log in as.
+
+\begin{listing}[H]
+  \graphqlfile{implementation/code/auth/login-as-mutation.gql}
+  \caption{Login as another user graphql mutation}
 \end{listing}
 
 
