@@ -14,7 +14,7 @@ To run the application and install dependencies the following tools were used:
 \end{itemize}
 
 Both tools were installed and managed using \texttt{rtx} \cite{rtx} tool manager.
-This tool allows installing annd manage many development tools which include Node.js and pnpm.
+This tool allows installing and manage many development tools which include Node.js and pnpm.
 After navigating to the project directory, rtx will automatically install all tools and select the correct versions based on the \texttt{.rtx.toml}.
 
 \begin{listing}[H]
@@ -51,7 +51,7 @@ The \texttt{packages} directory contains all the shared code used in the project
 The \texttt{packages/common} directory contains all the shared code used in the \texttt{backend}, \texttt{cli} and \texttt{web} applications.
 Other packages from figure \ref{fig:packages-file-tree} are used to provide the same configuration settings to all application in the \texttt{apps} directory.
 
-As the \textbf{common} is a TypeScript package, it needs to be compild to JavaScript firts before it can be used in the applications.
+As the \textbf{common} is a TypeScript package, it needs to be compiled to JavaScript first before it can be used in the applications.
 For this purpose a tool called \texttt{tsup} \cite{tsup} is used which is a TypeScript module bundler.
 It transpiles the TypeScript code to JavaScript using \texttt{esbuild} \cite{esbuild} and then bundles each defined module into a single file.
 Additionally, it invokes \texttt{tsc} to generate type definitions (\texttt{.d.ts} files \cite{typescript-d-ts}) for the bundled modules.
@@ -80,8 +80,8 @@ By default, this file is the \texttt{index.js} file, which is the default entry 
 This means that every function that would be used by the applications would have to be exported from the \texttt{index.js} file.
 This would lead to a very large file which would be hard to maintain and navigate. Bundlers can also struggle to remove unused code in a process called tree shaking \cite{tree-shaking}.
 To avoid this problem, the \texttt{exports} field in the \texttt{package.json} file is used to define the entry points for the package.
-There the rules for rexolving the imports specifies are defined. As currently there are many diffrent module formats used for the JavaScript module system,
-the exports' system can be also used to dterminate which files should be used for each module format. The project uses \texttt{ESM} \cite{esm} module format for frontend code and \texttt{CJS} \cite{cjs} for backend code.
+There the rules for resolving the imports specifies are defined. As currently there are many different module formats used for the JavaScript module system,
+the exports' system can be also used to determinate which files should be used for each module format. The project uses \texttt{ESM} \cite{esm} module format for frontend code and \texttt{CJS} \cite{cjs} for backend code.
 This is reflected in the \texttt{format} field in the \texttt{tsup} configuration file (listing \ref{code:tsup-config}).
 
 \begin{listing}[H]
@@ -113,7 +113,7 @@ Docker compose \cite{docker-compose} is used to manage the containers and their 
   \caption{Docker compose configuration file}
 \end{listing}
 
-The values for database user and password are taken from the enviroment with predefined value if not set.
+The values for database user and password are taken from the environment with predefined value if not set.
 
 
 \end{document}

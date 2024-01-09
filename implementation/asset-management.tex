@@ -10,17 +10,17 @@ Asset upload is done though the \texttt{ipxe/upload} endpoint. The endpoint acce
 Multiple files can be uploaded at once. An array of asset URLs is returned in the response body.
 
 The file upload and file store is handled by \texttt{multer} \cite{multer}, a middleware for Express.
-The middleware stores uploaded files in the fielesystem in the location specified by the configuration file.
+The middleware stores uploaded files in the filesystem in the location specified by the configuration file.
 
 \begin{listing}[H]
   \tsfile{implementation/code/cli/multer-config.ts}
   \caption{Multer configuration}
 \end{listing}
 
-By defualt, multer does not remove files if the upload process fails. This is not desirable, as it would lead to a buildup of unused files.
+By default, multer does not remove files if the upload process fails. This is not desirable, as it would lead to a buildup of unused files.
 To fix this behavior an event handler is added to the request \textbf{abort} event which removes the uploaded files from the filesystem.
 
-Uploaded files are stores in flat struture in the filesystem. To avoid name collistions a unique identifier is generated for each file.
+Uploaded files are stores in flat structure in the filesystem. To avoid name collisions a unique identifier is generated for each file.
 
 \begin{figure}[H]
   \centering
@@ -56,9 +56,9 @@ When a file is uploaded, the web interface shows a progress bar which indicates 
 \end{figure}
 
 After the upload is complete a random resource identifier is generated for the asset which is used to access the asset.
-This identifier is hown in the table in \texttt{Resource ID} column.
+This identifier is shown in the table in \texttt{Resource ID} column.
 For example if the resource identifier is \texttt{a1b2c3d4} the asset can be accessed at \texttt{http://server-host/api/ipxe/assets/a1b2c3d4}.
-It is possible to change the resource indentifier by clicking on the \texttt{Edit} button in the \texttt{Actions} column.
+It is possible to change the resource identifier by clicking on the \texttt{Edit} button in the \texttt{Actions} column.
 Resource identifiers can have multiple segments, for example \texttt{a1b2c3d4/e5f6g7h8}, in which case the asset can be accessed at \texttt{/api/ipxe/assets/a1b2c3d4/e5f6g7h8}.
 
 \begin{figure}[H]
@@ -67,7 +67,7 @@ Resource identifiers can have multiple segments, for example \texttt{a1b2c3d4/e5
   \caption{Editing resource identifier}
 \end{figure}
 
-For the SystemRescue booting process the following set of assests is used as shown in figure \ref{fig:sysrescue-assets}.
+For the SystemRescue booting process the following set of assets is used as shown in figure \ref{fig:sysrescue-assets}.
 
 \begin{figure}[H]
   \centering

@@ -6,9 +6,9 @@
 
 \subsection{Computers page}
 
-Computer page show a list of computers in the system that are grouped into collapsable groups.
+Computer page show a list of computers in the system that are grouped into collapsible groups.
 The page implementation can be found under \texttt{dashboard/ipxe/computers} in the
-app router direcotry of the web interface application.
+app router directory of the web interface application.
 
 Most of the code is used for displaying the computer list with the support fo drag and drop computers between groups.
 Drag and drop is implemented using the \texttt{dnd} library for React \cite{dnd}.
@@ -25,11 +25,11 @@ Drag and drop is implemented using the \texttt{dnd} library for React \cite{dnd}
   \caption{Computers page}
 \end{figure}
 
-In the fiure above, the first computer group is expanded, and the second one is collapsed. Computers without assigned group are displayed at the bottom of the list.
+In the figure above, the first computer group is expanded, and the second one is collapsed. Computers without assigned group are displayed at the bottom of the list.
 Computer entries are not able to be edited after they are added, they can be however deleted and added again.
 
 To add a new computer, the user has to click on the \texttt{Add computer} button, which opens a model with a form to fill in the computer details.
-Each computer group contains \texttt{Add computer} button, which adds a computer to the group. Clicking on the button ourside of the group adds a computer without a group.
+Each computer group contains \texttt{Add computer} button, which adds a computer to the group. Clicking on the button outside of the group adds a computer without a group.
 
 \begin{figure}[H]
   \centering
@@ -37,7 +37,7 @@ Each computer group contains \texttt{Add computer} button, which adds a computer
   \caption{Modal with a form to add a new computer}
 \end{figure}
 
-Adding a computer group is simmilary done by clicking on the \texttt{Add computer group} button visible in the top part of the page.
+Adding a computer group is similarly done by clicking on the \texttt{Add computer group} button visible in the top part of the page.
 
 \begin{figure}[H]
   \centering

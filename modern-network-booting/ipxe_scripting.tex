@@ -129,7 +129,7 @@ In order to use network communication in iPXE scripts, the network interface mus
 For most use cases, the \texttt{dhcp} command can be used to configure the network interface with a dynamic IP address.
 The \texttt{dhcp} command takes one argument which determinate the network interface to configure.
 If no argument is provided, the configuration will be tried on all network interfaces.
-Additionaly the \texttt{dhcp} command can be passed the \texttt{--timeout} parameter which will set the timeout for the DHCP request.
+Additionally the \texttt{dhcp} command can be passed the \texttt{--timeout} parameter which will set the timeout for the DHCP request.
 As stated by the official documentation \cite{ipxe_dhcp_vs_ifconfig} there is no difference between using the \texttt{dhcp} command and the \texttt{ifconf}.
 
 \begin{listing}[H]
@@ -147,7 +147,7 @@ When the network interface need to be configured with a static IP address, the \
 to configure the \texttt{ip}, \texttt{netmask} and \texttt{gateway} variables.
 
 
-Additionaly network interfaces have to be first opened using the \texttt{ifopen} command.
+Additionally network interfaces have to be first opened using the \texttt{ifopen} command.
 All network interfaces are closed by default. As pointed out in the documentation opening too much network interfaces can lead to memory exhaustion \cite{ipxe_opening_interfaces}.
 
 \begin{listing}[H]
@@ -205,7 +205,7 @@ parameter can be used to specify a shortcut key that upon pressing will select t
 
 To display the menu to the user, the \texttt{choose} command is used.
 It takes one argument which is the name of a variable to which the result of the menu will be assigned.
-Additionaly it takes the \texttt{--menu} parameter which specifies the name of the menu to display.
+Additionally it takes the \texttt{--menu} parameter which specifies the name of the menu to display.
 The \texttt{choose} command will display the menu to the user and wait for the user to select an entry.
 
 \begin{listing}[H]

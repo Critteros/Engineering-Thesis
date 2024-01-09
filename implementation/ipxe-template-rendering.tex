@@ -6,8 +6,8 @@
 
 \subsection{Strategy templates}
 
-To create a new startegy first a startegy template has to be created. This involves creating a renderer clas that extends from the \texttt{BaseRenderer} class and implements the \texttt{render} method.
-The \texttt{render} method takes no parameters and has to return a string containing the iPXE script. Additionally, the \texttt{getTemplateData} method can be overriden to provide additional
+To create a new strategy first a strategy template has to be created. This involves creating a renderer class that extends from the \texttt{BaseRenderer} class and implements the \texttt{render} method.
+The \texttt{render} method takes no parameters and has to return a string containing the iPXE script. Additionally, the \texttt{getTemplateData} method can be overridden to provide additional
 data that is then available in the template.
 
 Templates use the \texttt{mustache} templating syntax to insert data into the iPXE script.
@@ -16,20 +16,20 @@ Base class defines \texttt{ipxe\_setup} template partial that contains the menti
 
 \begin{listing}[H]
   \textfile{implementation/code/ipxe/ipxe_setup.ipxe}
-  \caption{ipxe\_setup template partial, paranthesis indidiacte mustache variables}
+  \caption{ipxe\_setup template partial, parenthesis indicate mustache variables}
 \end{listing}
 
 After adding the renderer class (example of which shown in listing \ref{lst:ipxe-renderer-def}), it has to be added to the \texttt{getRenderer} method in the \texttt{IpxeRendererService}.
-This method takes the startegy identifier and returns the renderer class for that startegy. The strategy database entry also has to be created in the database which can accomplished
-using the \texttt{startegy-templates.constant.ts}. Similary to the permissions constants file the contents of this file are used to populate the database during the seeding process.
+This method takes the strategy identifier and returns the renderer class for that strategy. The strategy database entry also has to be created in the database which can accomplished
+using the \texttt{startegy-templates.constant.ts}. Similarly to the permissions constants file the contents of this file are used to populate the database during the seeding process.
 
 \begin{listing}[H]
   \tsfile{implementation/code/ipxe/renderer-def.ts}
-  \caption{Implementation example of startegy template renderer}
+  \caption{Implementation example of strategy template renderer}
   \label{lst:ipxe-renderer-def}
 \end{listing}
 
-The defined startegy templates can be viewed in the web interface by navigating to the \texttt{Strategy templates} page.
+The defined strategy templates can be viewed in the web interface by navigating to the \texttt{Strategy templates} page.
 
 \begin{figure}[H]
   \centering

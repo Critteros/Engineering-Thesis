@@ -6,7 +6,7 @@
 
 The command line interface of the application depends on communication via a Unix domain socket \cite{unix_domain_socket},
 guaranteeing secure communication accessible only by having system access to the running application.
-The location of the socket alogiside the feature toogle is defined by the application configuration file.
+The location of the socket alongside the feature toggle is defined by the application configuration file.
 
 \subsection{Application config system}
 
@@ -20,8 +20,8 @@ Name of the file can be one of the following:
   \item \textbf{hydra.config}
 \end{itemize}
 
-Additionally, each configuration file can have a \textbf{.local} added before the file extension, e.g. \textbf{hydra.local.yml}. This is reffered to as \textbf{local} configuration file.
-Also, a dot can be added to the start of the file name, e.g. \textbf{.hydra.yml}. This is reffered to as \textbf{hidden} configuration file. Other configuration files are reffered to as \textbf{normal} or \textbf{standard} configuration files.
+Additionally, each configuration file can have a \textbf{.local} added before the file extension, e.g. \textbf{hydra.local.yml}. This is referred to as \textbf{local} configuration file.
+Also, a dot can be added to the start of the file name, e.g. \textbf{.hydra.yml}. This is referred to as \textbf{hidden} configuration file. Other configuration files are referred to as \textbf{normal} or \textbf{standard} configuration files.
 
 When configuration files are merged they are merged in the following order:
 \begin{enumerate}
@@ -56,7 +56,7 @@ The \texttt{defailt.ts} file contains the default configuration values that are 
 \end{listing}
 
 The \texttt{resolver.ts} file contains the logic that searches for configuration files and determinate the order in which they are to be loaded and merged.
-To load a configuratation file \texttt{fromFile} static method from \texttt{HydraConfig} class is used. It takes a path to the configuration file and returns a \texttt{HydraConfig} instance.
+To load a configuration file \texttt{fromFile} static method from \texttt{HydraConfig} class is used. It takes a path to the configuration file and returns a \texttt{HydraConfig} instance.
 
 \begin{listing}[H]
   \tsfile{implementation/code/cli/config-parser.ts}
@@ -83,30 +83,30 @@ This absence of a socket results in a communication breakdown between the \textb
 
 \subsection{Socket creation and API definition}
 
-The management api over unix socket is created upon application satrtup if feature is enabled in the configuration file.
+The management api over unix socket is created upon application startup if feature is enabled in the configuration file.
 
 \begin{listing}[H]
   \tsfile{implementation/code/cli/backend-init.ts}
   \caption{Backend initialization code}
 \end{listing}
 
-The management module exposes a signel controller which define two routes:
+The management module exposes a signal controller which define two routes:
 
 \begin{itemize}
   \item \textbf{accounts/create-admin-account} - creates account with admin privileges
   \item \textbf{accounts/create-standard-account} - creates standard account subjected to permission system
 \end{itemize}
 
-This controler does not use any authentication or authorization middleware, as it is not exposed to the internet and is only accessible by the \textbf{cli} application.
+This controller does not use any authentication or authorization middleware, as it is not exposed to the internet and is only accessible by the \textbf{cli} application.
 
 \subsection{CLI application}
 
 The command line application was created using the \texttt{nestjs-commander} library \cite{nestjs-commander}, which allow creating CLI application using
-existijng nestjs constructs like services and dependency injection.
+existing nestjs constructs like services and dependency injection.
 
 Each command is represented by a class that extends the \texttt{CommandRunner} class from the \texttt{nestjs-commander} library.
 These classes have to at least implement the \texttt{run} method which is invoked when the command is executed.
-Additionaly command can define its name, description, arguments and options.
+Additionally command can define its name, description, arguments and options.
 
 Arguments and options represent the user input that is passed to the command.
 Arguments are positional and are passed to the command in the order they are defined.
@@ -118,15 +118,15 @@ It is possible to define a short option name using the \texttt{-o} syntax.
   \caption{Fragemnt of class defining command that creates new admin user}
 \end{listing}
 
-Additionaly additional questions can be asked to user to fill in the missing arguments or options that were not passed to the command.
-This is implemented thorugh class that is decorated with \texttt{QuestionSet} decorator. Each method of this class represents a question that is asked to the user to fill in the missing data.
+Additionally additional questions can be asked to user to fill in the missing arguments or options that were not passed to the command.
+This is implemented through class that is decorated with \texttt{QuestionSet} decorator. Each method of this class represents a question that is asked to the user to fill in the missing data.
 
 \begin{listing}[H]
   \tsfile{implementation/code/cli/question-example.ts}
-  \caption{Fragemnt of class defining question set that asks user for missing data}
+  \caption{Fragment of class defining question set that asks user for missing data}
 \end{listing}
 
-To invoke \texttt{cli} application, the \texttt{Node.js} interpreter is invoked on the compiled entrypoint file.
+To invoke \texttt{cli} application, the \texttt{Node.js} interpreter is invoked on the compiled entry point file.
 
 \begin{listing}[H]
   \begin{bashcode}
@@ -136,7 +136,7 @@ To invoke \texttt{cli} application, the \texttt{Node.js} interpreter is invoked 
 \end{listing}
 
 This approach works but has the drawback of requiring the user to pass the script location to the \texttt{node} interpreter.
-To avoid providing this path and replicate a simialr behavior to other CLI applications, the following option can be added to the \texttt{package.json} file.
+To avoid providing this path and replicate a similar behavior to other CLI applications, the following option can be added to the \texttt{package.json} file.
 
 \begin{listing}[H]
   \jsonfile{implementation/code/cli/bin-entry.jsonc}

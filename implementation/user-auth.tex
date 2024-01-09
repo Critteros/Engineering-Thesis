@@ -18,9 +18,9 @@ under \texttt{src/auth} directory in the \textbf{backend} app directory.
   \caption{Backend auth directory structure}
 \end{figure}
 
-The \texttt{auth} direcotry is furher divided into following subdirectories:
+The \texttt{auth} directory is further divided into following sub-directories:
 \begin{itemize}
-  \item \texttt{controllers} - contains code which is responsible for handling incoming HTTP rquests and sending back responses (REST API)
+  \item \texttt{controllers} - contains code which is responsible for handling incoming HTTP requests and sending back responses (REST API)
   \item \texttt{decorators} - contains code that is used to extend other functions with additional functionality
   \item \texttt{dto} - contains data transfer objects, which define the data that is exchanged using REST API
   \item \texttt{guards} - contains code that is used to determinate if a given request should be authorized or not
@@ -28,7 +28,7 @@ The \texttt{auth} direcotry is furher divided into following subdirectories:
   \item \texttt{serializer} - contains code that is used to covert object to a representation that can be stored in cache
   \item \texttt{services} - contains classes that defined the business logic of the enclosing module, in this case the business logic is related to user authentication and authorization
 \end{itemize}
-This file structure is also used in other module of the backend application. It is a common practice to divide code into such subdirectories in NestJS applications.
+This file structure is also used in other module of the backend application. It is a common practice to divide code into such sub directories in NestJS applications.
 To emphasize the role which each file plays an additional suffix is added to the file name. For example, \texttt{auth.controller.ts} is a controller file, \texttt{auth.service.ts} is a service file, etc.
 
 In NestJS the application is build with modules, each module resides in its own directory under the \texttt{src} directory.
@@ -45,7 +45,7 @@ The module class is created using the \texttt{@Module} decorator imported from N
 The purpose of fileds of the module class decorator are as follows:
 \begin{itemize}
   \item \textbf{imports} - defines what other modules are imported into the current module
-  \item \textbf{providers} - contain list of services, resolvers and guards that are provided by the current module for the apllication
+  \item \textbf{providers} - contain list of services, resolvers and guards that are provided by the current module for the application
   \item \textbf{controllers} - defines what controllers are provided by the current module
   \item \textbf{exports} - defines what services, resolvers and guards are exported from the current module and can be used by other modules
 \end{itemize}
@@ -53,8 +53,8 @@ The purpose of fileds of the module class decorator are as follows:
 \subsubsection{Passport.js integration}
 
 Passport.js is a library that handles the authentication logic in the application.
-To intgrate passport into the application first a startegy has to be defined. In this case the \texttt{LocalStrategy} is used.
-This startegy performs using the username and password provided by the user. The logic of the startegy is defined in \texttt{local.strategy.ts} file.
+To integrate passport into the application first a strategy has to be defined. In this case the \texttt{LocalStrategy} is used.
+This strategy performs using the username and password provided by the user. The logic of the strategy is defined in \texttt{local.strategy.ts} file.
 
 \begin{listing}[H]
   \tsfile{implementation/code/auth/local.strategy.ts}
@@ -82,18 +82,18 @@ This guard is then used to decorate a controller method.
 
 Posting a request to the \texttt{/login} endpoint will first invoke the \texttt{LocalAuthGuard}.
 This guard will inspect the request object for user credentials and if they are not present it will reject the request.
-If the credentials are present the \texttt{validate} method of \texttt{LocalAuthGuard} will be invoked and the validation suceeds then request will be authorized, and the
+If the credentials are present the \texttt{validate} method of \texttt{LocalAuthGuard} will be invoked and the validation succeeds then request will be authorized, and the
 \texttt{login} method will be invoked. Otherwise, the request will be rejected and the \texttt{UnauthorizedException} will be thrown.
 
 To complete the authentication the result of the \texttt{login} method has to be serialized and stored in the session.
-To later deserialize the session middleware has to be registered in the application.
+To later de-serialize the session middleware has to be registered in the application.
 
 \begin{listing}[H]
   \tsfile{implementation/code/auth/express-session.middleware.ts}
   \caption{Express session middleware}
 \end{listing}
 
-The express middleware will write and retive the session data from the Redis cache and store it in the \texttt{req.session} object.
+The express middleware will write and retrive the session data from the Redis cache and store it in the \texttt{req.session} object.
 A session cookie will be sent to the client and the client will send it back with each request. The session cookie will be used to identify the session.
 The data that is stored in the session is provided by the passport middleware.
 
@@ -112,7 +112,7 @@ The data that is stored in the session is provided by the passport middleware.
 \subsubsection{Route authentication}
 
 The \texttt{LocalAuthGuard} is used to authenticate the user when they are logging in. To authenticate the user when they are accessing a protected route
-a seperate guard has to be defined. The guard will read the session data from the request object and check if the user is authenticated.
+a separate guard has to be defined. The guard will read the session data from the request object and check if the user is authenticated.
 This logic is defined in \texttt{AuthenticatedOrPublic} guard, which is employed throughout the entire application to guarantee that only authenticated users have access.
 
 
@@ -124,8 +124,8 @@ To allow access to certain routes for unauthenticated users, a decorator named \
 \end{listing}
 
 To implement this decorator the special object called \texttt{Reflector} is used. This object is provided by the NestJS framework and is used to read and write metadata.
-This is similar to annotations in \texttt{Java} or \texttt{C\#} languages. The medatata can be written to a class, method or a property. In this case the metadata is written to a class, that uses the \texttt{PublicHandler} decorator.
-Later this metadata is read by the \texttt{AuthenticatedOrPublic} guard to determine if the route should be accesible by unauthorized users.
+This is similar to annotations in \texttt{Java} or \texttt{C\#} languages. The metadata can be written to a class, method or a property. In this case the metadata is written to a class, that uses the \texttt{PublicHandler} decorator.
+Later this metadata is read by the \texttt{AuthenticatedOrPublic} guard to determine if the route should be accessible by unauthorized users.
 
 \begin{listing}[H]
   \tsfile{implementation/code/auth/authenticated-or-public.guard.ts}
@@ -159,7 +159,7 @@ Permissions are defined in the \texttt{permissions.constant.ts} file. These perm
 Each permission is defined by a unique identifier and a description. The identifier consist of category for which functionality the permission is defined and the name of the individual permission.
 The permissions system provides two decorators:
 \begin{itemize}
-  \item \textbf{RequirePermission} - Takes a list of permissions as an argument and assigns the medatadata to the decorated class, method or property
+  \item \textbf{RequirePermission} - Takes a list of permissions as an argument and assigns the metadata to the decorated class, method or property
   \item \textbf{AdministratorOnly} - Assigns metadata information that the decorated class, method or property can only be accessed by users with the \texttt{ADMIN} account type
 \end{itemize}
 
@@ -175,13 +175,13 @@ If user does not have the required permissions the request is rejected with HTTP
 
 \subsubsection{Roles creation and assignment}
 
-The role retrival and creation is implemented in the \texttt{RoleResolver} class. This class handles GraphQL queries and mutations related to roles.
-The exchanged data format is defined under the \texttt{schemas} subdirectory. Under this directory theree types of files can be found:
+The role retrieval and creation is implemented in the \texttt{RoleResolver} class. This class handles GraphQL queries and mutations related to roles.
+The exchanged data format is defined under the \texttt{schemas} sub directory. Under this directory there types of files can be found:
 
 \begin{itemize}
   \item \textbf{.object.ts} - Object types, used to define the shape of the data that is exchanged between the client and the server through GraphQL API
   \item \textbf{.input.ts} - Input types, used to define the shape of the data that is sent to the server
-  \item \textbf{.args.ts} - Similar to input types, but instead of defining the shape in object notation, the shape defined muration function arguments
+  \item \textbf{.args.ts} - Similar to input types, but instead of defining the shape in object notation, the shape defined duration function arguments
 \end{itemize}
 
 \begin{listing}[H]
@@ -191,7 +191,7 @@ The exchanged data format is defined under the \texttt{schemas} subdirectory. Un
 
 Object types in GraphQL APIs often contain another object types. In this case the \texttt{Role} object contains a list of \texttt{Permission} objects.
 In contrast to the REST API design where only the relation keys would be returned for permissions, GraphQL APIs are designed in this way to reduce the number of requests that have to be made to the server.
-This hover poses an implementation challange as the full data object alongside with all of its nested objects have to be returned from the database.
+This hover poses an implementation challenge as the full data object alongside with all of its nested objects have to be returned from the database.
 GraphQL provides a solution to this problem in the form of \texttt{FieldResolvers} which are used to resolve nested objects.
 
 \begin{listing}[H]
@@ -199,19 +199,19 @@ GraphQL provides a solution to this problem in the form of \texttt{FieldResolver
   \caption{Fragemnt of the role resolver implementation}
 \end{listing}
 
-The above listing shows a fragement of the implementation of the \texttt{roles} resolver.
+The above listing shows a fragment of the implementation of the \texttt{roles} resolver.
 The mutations are marked with the \texttt{@Mutation} decorator and the arguments are defined using the \texttt{@Args} decorator.
 Both \texttt[ArgTypes] and \texttt{InputTypes} can be used to define the shape of the arguments.
-Field resolvers take single arguemnt which is the object that is being resolved. In this case the \texttt{Role} object is being resolved.
+Field resolvers take single argument which is the object that is being resolved. In this case the \texttt{Role} object is being resolved.
 They are responsible for resolving the nested field after which the method is named.
 
-Resolvers hevilay rely on the services to perform the buisness logic. In this case this logic is defined in the \texttt{RolesService} class.
+Resolvers heavily rely on the services to perform the business logic. In this case this logic is defined in the \texttt{RolesService} class.
 Services are injected though the constructor function which in the case of listing \ref{code:auth-resolver} was omitted for brevity.
 
 
 \subsubsection{Admin login as other user}
 
-The last functionality that is implemented by the authorization and authenication system is the ability for the administrator to login as another user.
+The last functionality that is implemented by the authorization and authentication system is the ability for the administrator to login as another user.
 This functionality is implemented in the \texttt{AuthResolver} class. This resolver is used to handle GraphQL requests related to authentication and authorization.
 
 \begin{listing}[H]
@@ -243,7 +243,7 @@ located in directory \texttt{src/app/login/page.tsx}. Next.js read the contents 
 \end{listing}
 
 Login form is showed to the user if they are not authenticated.
-If authenticiated user tries to access the login page they will be redirected to the home page.
+If authenticated user tries to access the login page they will be redirected to the home page.
 
 \begin{figure}[H]
   \centering
@@ -251,7 +251,7 @@ If authenticiated user tries to access the login page they will be redirected to
   \caption{Login page}
 \end{figure}
 
-The automatic rederirection of unauthorized users is implemented in the Next.js application middleware located in \texttt{src/middleware.ts} file.
+The automatic redirection of unauthorized users is implemented in the Next.js application middleware located in \texttt{src/middleware.ts} file.
 
 \begin{listing}[H]
   \tsfile{implementation/code/auth/next-middleware.ts}
@@ -260,12 +260,12 @@ The automatic rederirection of unauthorized users is implemented in the Next.js 
 
 \subsubsection{Roles page}
 
-The root server component for the roles page fetches the data form server GrapgQL API and passes it to the \texttt{DataTable} component.
+The root server component for the roles page fetches the data form server GraphQL API and passes it to the \texttt{DataTable} component.
 DataTable is a table with advanced filtering and sorting capabilities. It is implemented using the \texttt{TanStack Table} library \cite{tanstack-table}.
 
 \begin{listing}[H]
   \jsxfile{implementation/code/auth/roles-page.tsx}
-  \caption{Roles page component implementation. A fallback component is showne if the user last sufficient permissions}
+  \caption{Roles page component implementation. A fallback component is shown if the user last sufficient permissions}
 \end{listing}
 
 \begin{figure}[H]
@@ -275,7 +275,7 @@ DataTable is a table with advanced filtering and sorting capabilities. It is imp
 \end{figure}
 
 Data table supports disabling selected columns, searching and sorting. It also supports pagination.
-Aftter selecing a row a delete button is shown. This button is disabled if the user does not have sufficient permissions.
+After selecting a row a delete button is shown. This button is disabled if the user does not have sufficient permissions.
 
 \begin{figure}[H]
   \centering
@@ -284,7 +284,7 @@ Aftter selecing a row a delete button is shown. This button is disabled if the u
 \end{figure}
 
 Permissions columns show the number of assigned permission to a given role.
-Simillary the members column shown number of users that have been assigned a given role.
+Similarly the members column shown number of users that have been assigned a given role.
 Clicking on these number will open a model with transfer list component which can be used to assign permissions or users to a given role.
 
 \begin{figure}[H]
@@ -293,8 +293,8 @@ Clicking on these number will open a model with transfer list component which ca
   \caption{Assigning role to users}
 \end{figure}
 
-Each data mutation like creating, updating or deleting a role is peformed though the use of GraphQL mutations.
-Additionaly a toast notification is shown to the user to inform them about the result of the operation.
+Each data mutation like creating, updating or deleting a role is performed though the use of GraphQL mutations.
+Additionally a toast notification is shown to the user to inform them about the result of the operation.
 
 \begin{figure}[H]
   \centering
